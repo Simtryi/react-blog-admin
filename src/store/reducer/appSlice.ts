@@ -9,7 +9,7 @@ export const appSlice = createSlice({
     name: "app",
     initialState,
     reducers: {
-        //  设置菜单状态
+        //  设置菜单收起状态
         setCollapsed: (state: App, action: PayloadAction<boolean>) => {
             state.collapsed = action.payload
         }
