@@ -1,5 +1,5 @@
 import React, {ReactNode} from "react";
-import MenuType from "../common/enums/menuType";
+import MenuType from "../common/enums/MenuType";
 import {HomeOutlined} from "@ant-design/icons";
 import Home from "../view/home";
 

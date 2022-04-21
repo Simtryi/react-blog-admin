@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import App from "../../model/app";
+import App from "../../model/App";
 
 const initialState: App = {
     collapsed: false
