@@ -3,6 +3,7 @@ import SVG from "react-inlinesvg";
 import {useNavigate} from "react-router-dom";
 import classNames from "classnames";
 import Icon from "../../component/Icon";
+import IconType from "../../common/enums/IconType";
 
 import bg from "../../assets/img/bg.png";
 import illustration from "../../assets/img/illustration.svg";
@@ -30,17 +31,17 @@ const Login: FC = () => {
 
             <div className="content">
                 <div className="content-left">
-                    <SVG src={illustration} width={500} title="illustration"/>
+                    <SVG src={illustration} width={500}/>
                 </div>
 
                 <div className="content-right">
                     <div className="form">
-                        <SVG src={avatar} width={100} height={100} title="avatar"/>
+                        <SVG src={avatar} width={100} height={100}/>
                         <h2>Blog Admin</h2>
 
                         <div className={classNames("input-group", {"focused": userFocus})}>
                             <div className="icon">
-                                <Icon type="blog-user"/>
+                                <Icon type={IconType.USER}/>
                             </div>
                             <div>
                                 <h5>用户名</h5>
@@ -56,7 +57,7 @@ const Login: FC = () => {
 
                         <div className={classNames("input-group", {"focused": pwdFocus})}>
                             <div className="icon">
-                                <Icon type="blog-password"/>
+                                <Icon type={IconType.PASSWORD}/>
                             </div>
                             <div>
                                 <h5>密码</h5>

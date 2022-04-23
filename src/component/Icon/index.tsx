@@ -1,8 +1,9 @@
 import {FC} from "react";
 import {createFromIconfontCN} from "@ant-design/icons";
+import IconType from "../../common/enums/IconType";
 
 interface IProps {
-    type: string    //  图标名称
+    type: IconType    //  图标类型
 }
 
 /**
@@ -10,7 +11,7 @@ interface IProps {
  */
 const Icon: FC<IProps> = (props: IProps) => {
     const IconFont = createFromIconfontCN({
-        scriptUrl: "//at.alicdn.com/t/font_3346939_odfop2sdtk.js"
+        scriptUrl: "//at.alicdn.com/t/font_3346939_6ifg7m43pkv.js"
     })
 
     return <IconFont type={props.type}/>

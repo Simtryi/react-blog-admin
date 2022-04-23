@@ -20,7 +20,19 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  },
   "include": [
-    "src"
+    "src",
+    "typings"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "build"
   ]
 }

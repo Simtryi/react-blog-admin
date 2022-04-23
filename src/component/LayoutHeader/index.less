@@ -1,17 +1,96 @@
-.header {
-  width: 100%;
-  line-height: 1.2;
+.layout-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  box-shadow: 0 0.7px 1.4px rgb(0 0 0 / 7%), 0 1.9px 4px rgb(0 0 0 / 5%), 0 4.5px 10px rgb(0 0 0 / 5%);
 
   .header-top {
-    height: 48px;
-    padding-left: 8px;
-    padding-right: 8px;
-    font-size: 14px;
-    //background-color: #25282f;
+    height: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background-color: #25282f;
+    border-bottom-color: #25282f;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+
+    .top-left {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 8px;
+      padding-right: 8px;
+      color: #fff;
+      font-size: 18px;
+    }
+
+    .top-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .top-right {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 8px;
+      padding-right: 8px;
+
+      .header-item {
+        width: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .anticon {
+        svg {
+          width: 16px;
+          height: 16px;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .header-bottom {
+    height: 3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: #fff;
+    border-bottom: 1px solid #cdd3df;
+    display: flex;
+    align-items: center;
+
+    .header-menu {
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          color: black;
+        }
+      }
+    }
+
+    .header-breadcrumb {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
   }
 }
