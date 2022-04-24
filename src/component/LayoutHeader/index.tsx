@@ -36,7 +36,7 @@ const LayoutHeader: FC = () => {
                         <BellOutlined className="notification"/>
                     </div>
                     <div className="header-item">
-                        <Avatar size="small" style={{backgroundColor: "rgb(245, 163, 92)"}} icon={<UserOutlined/>}/>
+                        <Avatar size="small" style={{backgroundColor: "rgb(198, 154, 114)"}} icon={<UserOutlined/>}/>
                     </div>
                 </div>
             </Layout.Header>

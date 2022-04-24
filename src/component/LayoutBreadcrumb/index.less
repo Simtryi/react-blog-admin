@@ -1,25 +1,25 @@
 .ant-breadcrumb {
-  height: 16px;
-  font-size: 12px;
-  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 16px;
+  font-size: 12px;
+  font-weight: 500;
   font-family: Helvetica, Arial, sans-serif;
 
   .default {
-    border-radius: 6px;
-    color: #343741;
-    background-color: rgba(52,55,65,.2);
     padding: 4px 16px;
+    border-radius: 6px;
+    background-color: rgba(52,55,65,.2);
+    color: #343741;
   }
 
   .first {
+    padding: 4px 16px;
     border-radius: 6px 0 0 6px;
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
-    color: #0061a6;
     background-color: rgba(0,119,204,0.2);
-    padding: 4px 16px;
+    color: #0061a6;
     transition: 0.5s;
 
     &:hover {
@@ -29,11 +29,11 @@
   }
 
   .middle {
-    color: #0061a6;
-    background-color: rgba(0,119,204,0.2);
     padding: 4px 16px;
     margin-left: -4px;
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%, 8px 50%);
+    background-color: rgba(0,119,204,0.2);
+    color: #0061a6;
     transition: 0.5s;
 
     &:hover {
@@ -43,11 +43,11 @@
   }
 
  .last {
-   border-radius: 0 6px 6px 0;
-   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
-   color: #343741;
-   background-color: rgba(52,55,65,0.2);
    padding: 4px 16px;
    margin-left: -4px;
+   border-radius: 0 6px 6px 0;
+   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
+   background-color: rgba(52,55,65,0.2);
+   color: #343741;
  }
 }
