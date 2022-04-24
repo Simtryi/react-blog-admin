@@ -1,4 +1,4 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
 import {Button, Menu, Drawer} from "antd";
@@ -14,8 +14,6 @@ import "./index.less";
 const LayoutNavigation: FC = () => {
     const app = useAppSelector(state => state.app)
     const dispatch = useAppDispatch()
-
-    const [visible, setVisible] = useState(false)
 
     return (
         <div className="layout-nav">

@@ -1,8 +1,9 @@
 import {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
-import {Layout, Avatar, Input, Button, Breadcrumb} from "antd";
+import {Layout, Avatar, Input, Button} from "antd";
 import {BellOutlined, UserOutlined} from "@ant-design/icons";
+import LayoutBreadcrumb from "../LayoutBreadcrumb";
 import Icon from "../Icon";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
@@ -50,17 +51,12 @@ const LayoutHeader: FC = () => {
                     />
                 </div>
 
+                <div className="header-custom">
+                    <Button type="ghost" size="small">D</Button>
+                </div>
+
                 <div className="header-breadcrumb">
-                    {/*<Breadcrumb>*/}
-                    {/*    <Breadcrumb.Item>Home</Breadcrumb.Item>*/}
-                    {/*    <Breadcrumb.Item>*/}
-                    {/*        <a href="">Application Center</a>*/}
-                    {/*    </Breadcrumb.Item>*/}
-                    {/*    <Breadcrumb.Item>*/}
-                    {/*        <a href="">Application List</a>*/}
-                    {/*    </Breadcrumb.Item>*/}
-                    {/*    <Breadcrumb.Item>An Application</Breadcrumb.Item>*/}
-                    {/*</Breadcrumb>*/}
+                    <LayoutBreadcrumb/>
                 </div>
             </Layout.Header>
         </div>
