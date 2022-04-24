@@ -1,9 +1,11 @@
 import {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
-import {setNavStatus} from "../../store/reducer/appSlice";
+import {setDropdownStatus, setNavStatus} from "../../store/reducer/appSlice";
 import {Layout, Avatar, Input, Button} from "antd";
 import {BellOutlined, UserOutlined} from "@ant-design/icons";
 import LayoutBreadcrumb from "../LayoutBreadcrumb";
+import Dropdown from "../Dropdown";
+import ArrowDirection from "../../common/enums/ArrowDirection";
 import Icon from "../Icon";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
@@ -14,6 +16,14 @@ import "./index.less";
 const LayoutHeader: FC = () => {
     const app = useAppSelector(state => state.app)
     const dispatch = useAppDispatch()
+
+    //  下拉菜单元素
+    const dropdownItems = [{name: "账户设置", icon: IconType.USER_SETTING}, {name: "注销", icon: IconType.LOGOUT}]
+
+    //  设置下拉菜单状态
+    const handleDropdownStatus = () => {
+        dispatch(setDropdownStatus(!app.dropdownStatue))
+    }
 
     //  设置导航栏状态
     const handleNavStatus = () => {
@@ -36,7 +46,22 @@ const LayoutHeader: FC = () => {
                         <BellOutlined className="notification"/>
                     </div>
                     <div className="header-item">
-                        <Avatar size="small" style={{backgroundColor: "rgb(198, 154, 114)"}} icon={<UserOutlined/>}/>
+                        <div className="header-dropdown">
+                            <Dropdown
+                                visible={app.dropdownStatue}
+                                items={dropdownItems}
+                                arrow={true}
+                                arrowDirection={ArrowDirection.RIGHT}
+                            />
+                        </div>
+
+                        <div className="header-avatar" onClick={() => handleDropdownStatus()}>
+                            <Avatar
+                                size="small"
+                                style={{backgroundColor: "rgb(198, 154, 114)"}}
+                                icon={<UserOutlined/>}
+                            />
+                        </div>
                     </div>
                 </div>
             </Layout.Header>

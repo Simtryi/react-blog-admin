@@ -18,6 +18,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100%;
       padding-left: 8px;
       padding-right: 8px;
       font-size: 18px;
@@ -28,12 +29,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100%;
     }
 
     .top-right {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 100%;
       padding-left: 8px;
       padding-right: 8px;
 
@@ -42,14 +45,22 @@
         justify-content: center;
         align-items: center;
         width: 40px;
+        height: 100%;
+
+        .anticon {
+          svg {
+            width: 16px;
+            height: 16px;
+            color: #fff;
+          }
+        }
       }
 
-      .anticon {
-        svg {
-          width: 16px;
-          height: 16px;
-          color: #fff;
-        }
+      .header-dropdown {
+        position: fixed;
+        top: 55px;
+        right: 7px;
+        width: 160px;
       }
     }
   }
