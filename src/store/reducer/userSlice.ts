@@ -4,6 +4,7 @@ import User from "../../model/User";
 const initialState: User = {
     username: "",
     password: "",
+    token: null,
     permission: []
 }
 

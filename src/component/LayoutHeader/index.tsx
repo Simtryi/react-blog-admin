@@ -81,7 +81,7 @@ const LayoutHeader: FC = () => {
                 </div>
 
                 <div className="header-breadcrumb">
-                    <LayoutBreadcrumb/>
+                    <LayoutBreadcrumb routes={app.routes}/>
                 </div>
             </Layout.Header>
         </div>

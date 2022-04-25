@@ -12,7 +12,8 @@ export interface Permission {
  */
 export default interface User {
     username: string            //  用户名
-    password: string            //  密码
-    nickname?: string           //  昵称
-    permission: Permission[]    //  权限
+    password: string            //  用户密码
+    nickname?: string           //  用户昵称
+    token: string | null        //  用户 token
+    permission: Permission[]    //  用户权限
 }

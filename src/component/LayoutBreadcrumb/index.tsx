@@ -1,27 +1,17 @@
 import {FC} from "react";
-import {Breadcrumb} from "antd";
 import {Link} from "react-router-dom";
+import {Breadcrumb} from "antd";
+import {Route} from "antd/lib/breadcrumb/Breadcrumb";
 import "./index.less";
 
-const routes = [
-    {
-        path: 'index',
-        breadcrumbName: 'home'
-    },
-    {
-        path: 'first',
-        breadcrumbName: 'first'
-    },
-    {
-        path: 'second',
-        breadcrumbName: 'second',
-    }
-]
+interface IProps {
+    routes: Route[] //  面包屑路由
+}
 
 /**
  * 布局-面包屑
  */
-const LayoutBreadcrumb: FC = () => {
+const LayoutBreadcrumb: FC<IProps> = (props: IProps) => {
     const itemRender = (route: any, params: any, routes: any, paths: any) => {
         const length = routes.length
 
@@ -42,7 +32,7 @@ const LayoutBreadcrumb: FC = () => {
     }
 
     return (
-        <Breadcrumb itemRender={itemRender} routes={routes} separator=""/>
+        <Breadcrumb itemRender={itemRender} routes={props.routes} separator=""/>
     )
 }
 
