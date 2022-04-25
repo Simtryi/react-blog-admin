@@ -1,7 +1,10 @@
 import {FC, useState} from "react";
-import SVG from "react-inlinesvg";
 import {useNavigate} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
+import {setPassword, setToken, setUsername} from "../../store/reducer/userSlice";
 import {useSpring, animated} from "@react-spring/web";
+import {login} from "../../api/admin";
+import SVG from "react-inlinesvg";
 import classNames from "classnames";
 import Icon from "../../component/Icon";
 import IconType from "../../common/enums/IconType";
@@ -15,15 +18,25 @@ import "./index.less";
  * 登录页面
  */
 const Login: FC = () => {
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [userFocus, setUserFocus] = useState(false)
-    const [pwdFocus, setPwdFocus] = useState(false)
+    const user = useAppSelector(state => state.user)
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
+    const [userFocus, setUserFocus] = useState(false)
+    const [pwdFocus, setPwdFocus] = useState(false)
+
     //  登录
-    const handleLogin = () => {
-        navigate("/")
+    const handleLogin = async () => {
+        const response = await login(user.username, user.password)
+        //  登录成功
+        if (response.code === "OK") {
+            //  设置 token
+            const token = response.data.authenticationSchema + response.data.token
+            dispatch(setToken(token))
+
+            //  跳转页面
+            navigate("/")
+        }
     }
 
     //  标题动画样式
@@ -81,9 +94,9 @@ const Login: FC = () => {
                                     <input
                                         type="text"
                                         className="input"
-                                        onChange={(e) => setUsername(e.target.value)}
+                                        onChange={(e) => dispatch(setUsername(e.target.value))}
                                         onFocus={() => setUserFocus(true)}
-                                        onBlur={() => setUserFocus(username.length !== 0)}
+                                        onBlur={() => setUserFocus(user.username.length !== 0)}
                                     />
                                 </div>
                             </div>
@@ -99,9 +112,9 @@ const Login: FC = () => {
                                     <input
                                         type="password"
                                         className="input"
-                                        onChange={(e) => setPassword(e.target.value)}
+                                        onChange={(e) => dispatch(setPassword(e.target.value))}
                                         onFocus={() => setPwdFocus(true)}
-                                        onBlur={() => setPwdFocus(password.length !== 0)}
+                                        onBlur={() => setPwdFocus(user.password.length !== 0)}
                                     />
                                 </div>
                             </div>

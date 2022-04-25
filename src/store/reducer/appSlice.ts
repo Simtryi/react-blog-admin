@@ -1,8 +1,16 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import App from "../../model/App";
 import {Route} from "antd/lib/breadcrumb/Breadcrumb";
 
-const initialState: App = {
+/**
+ * 应用状态
+ */
+interface AppState {
+    navStatus: boolean      //  导航栏状态 true: 打开, false: 关闭
+    dropdownStatue: boolean //  下拉菜单状态 true: 打开, false: 关闭
+    routes: Route[]         //  面包屑路由
+}
+
+const initialState: AppState = {
     navStatus: false,
     dropdownStatue: false,
     routes: [
@@ -26,17 +34,17 @@ export const appSlice = createSlice({
     initialState,
     reducers: {
         //  设置导航栏状态
-        setNavStatus: (state: App, action: PayloadAction<boolean>) => {
+        setNavStatus: (state: AppState, action: PayloadAction<boolean>) => {
             state.navStatus = action.payload
         },
 
         //  设置下拉菜单状态
-        setDropdownStatus: (state: App, action: PayloadAction<boolean>) => {
+        setDropdownStatus: (state: AppState, action: PayloadAction<boolean>) => {
             state.dropdownStatue = action.payload
         },
 
         //  设置面包屑路由
-        setRoutes: (state: App, action: PayloadAction<Route[]>) => {
+        setRoutes: (state: AppState, action: PayloadAction<Route[]>) => {
             state.routes = action.payload
         }
     }
