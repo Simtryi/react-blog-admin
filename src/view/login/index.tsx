@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setPassword, setToken, setUsername} from "../../store/reducer/userSlice";
 import {useSpring, animated} from "@react-spring/web";
 import {login} from "../../api/admin";
+import {message} from "antd";
 import SVG from "react-inlinesvg";
 import classNames from "classnames";
 import Icon from "../../component/Icon";
@@ -34,6 +35,8 @@ const Login: FC = () => {
             const token = response.data.authenticationSchema + response.data.token
             dispatch(setToken(token))
 
+            //  提示消息
+            message.success("登录成功")
             //  跳转页面
             navigate("/")
         }
@@ -85,7 +88,7 @@ const Login: FC = () => {
                         </animated.div>
 
                         <animated.div style={userInputStyles}>
-                            <div className={classNames("input-group", {"focused": userFocus})}>
+                            <div className={classNames("input-group", {"focused": userFocus || user.username.length !== 0})}>
                                 <div className="icon">
                                     <Icon type={IconType.USER}/>
                                 </div>
@@ -94,6 +97,7 @@ const Login: FC = () => {
                                     <input
                                         type="text"
                                         className="input"
+                                        value={user.username}
                                         onChange={(e) => dispatch(setUsername(e.target.value))}
                                         onFocus={() => setUserFocus(true)}
                                         onBlur={() => setUserFocus(user.username.length !== 0)}
@@ -103,7 +107,7 @@ const Login: FC = () => {
                         </animated.div>
 
                         <animated.div style={pwdInputStyles}>
-                            <div className={classNames("input-group", {"focused": pwdFocus})}>
+                            <div className={classNames("input-group", {"focused": pwdFocus || user.password.length !== 0})}>
                                 <div className="icon">
                                     <Icon type={IconType.PASSWORD}/>
                                 </div>
@@ -112,6 +116,7 @@ const Login: FC = () => {
                                     <input
                                         type="password"
                                         className="input"
+                                        value={user.password}
                                         onChange={(e) => dispatch(setPassword(e.target.value))}
                                         onFocus={() => setPwdFocus(true)}
                                         onBlur={() => setPwdFocus(user.password.length !== 0)}

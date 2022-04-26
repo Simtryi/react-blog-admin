@@ -33,6 +33,13 @@ export const appSlice = createSlice({
     name: "app",
     initialState,
     reducers: {
+        //  初始化应用
+        initApp: (state: AppState) => {
+            state.navStatus = initialState.navStatus
+            state.dropdownStatue = initialState.dropdownStatue
+            state.routes = initialState.routes
+        },
+
         //  设置导航栏状态
         setNavStatus: (state: AppState, action: PayloadAction<boolean>) => {
             state.navStatus = action.payload
@@ -50,5 +57,5 @@ export const appSlice = createSlice({
     }
 })
 
-export const {setNavStatus, setDropdownStatus, setRoutes} = appSlice.actions
+export const {initApp, setNavStatus, setDropdownStatus, setRoutes} = appSlice.actions
 export default appSlice.reducer

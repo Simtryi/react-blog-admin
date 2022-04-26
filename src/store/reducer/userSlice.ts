@@ -19,6 +19,13 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
+        //  初始化用户
+        initUser: (state: UserState) => {
+            state.username = initialState.username
+            state.password = initialState.password
+            state.token = initialState.token
+        },
+
         //  设置用户名
         setUsername: (state: UserState, action: PayloadAction<string>) => {
             state.username = action.payload
@@ -36,5 +43,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const {setUsername, setPassword, setToken} = userSlice.actions
+export const {initUser, setUsername, setPassword, setToken} = userSlice.actions
 export default userSlice.reducer

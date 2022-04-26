@@ -1,14 +1,16 @@
-import {FC} from "react";
+import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
-import {setDropdownStatus, setNavStatus} from "../../store/reducer/appSlice";
-import {Layout, Avatar, Input, Button} from "antd";
+import {initApp, setDropdownStatus, setNavStatus} from "../../store/reducer/appSlice";
+import {Layout, Avatar, Input, Button, message} from "antd";
 import {BellOutlined, UserOutlined} from "@ant-design/icons";
 import LayoutBreadcrumb from "../LayoutBreadcrumb";
-import Dropdown from "../Dropdown";
-import ArrowDirection from "../../common/enums/ArrowDirection";
+import {logout} from "../../api/admin";
+import classNames from "classnames";
 import Icon from "../Icon";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
+import {useNavigate} from "react-router-dom";
+import {initUser} from "../../store/reducer/userSlice";
 
 /**
  * 布局-头部
@@ -16,9 +18,7 @@ import "./index.less";
 const LayoutHeader: FC = () => {
     const app = useAppSelector(state => state.app)
     const dispatch = useAppDispatch()
-
-    //  下拉菜单元素
-    const dropdownItems = [{name: "账户设置", icon: IconType.USER_SETTING}, {name: "注销", icon: IconType.LOGOUT}]
+    const navigate = useNavigate()
 
     //  设置下拉菜单状态
     const handleDropdownStatus = () => {
@@ -28,6 +28,23 @@ const LayoutHeader: FC = () => {
     //  设置导航栏状态
     const handleNavStatus = () => {
         dispatch(setNavStatus(!app.navStatus))
+    }
+
+    //  注销
+    const handleLogout = async () => {
+        const response = await logout()
+        //  注销成功
+        if (response.code === "OK") {
+            //  初始化应用
+            dispatch(initApp())
+            //  初始化用户
+            dispatch(initUser())
+
+            //  提示消息
+            message.success("注销成功")
+            //  跳转页面
+            navigate("/login")
+        }
     }
 
     return (
@@ -47,12 +64,30 @@ const LayoutHeader: FC = () => {
                     </div>
                     <div className="header-item">
                         <div className="header-dropdown">
-                            <Dropdown
-                                visible={app.dropdownStatue}
-                                items={dropdownItems}
-                                arrow={true}
-                                arrowDirection={ArrowDirection.RIGHT}
-                            />
+                            <ul className={classNames("dropdown-menu", {
+                                "dropdown-menu-close": !app.dropdownStatue,
+                            })}>
+                                <li>
+                                    <div className="dropdown-item">
+                                        <div className="dropdown-icon">
+                                            <Icon type={IconType.USER_SETTING}/>
+                                        </div>
+                                        <div className="dropdown-title">
+                                            账户设置
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div className="dropdown-item">
+                                        <div className="dropdown-icon">
+                                            <Icon type={IconType.LOGOUT}/>
+                                        </div>
+                                        <div className="dropdown-title" onClick={() => handleLogout()}>
+                                            注销
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
 
                         <div className="header-avatar" onClick={() => handleDropdownStatus()}>
