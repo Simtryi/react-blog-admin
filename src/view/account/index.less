@@ -1,0 +1,73 @@
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  height: 100%;
+  padding: 16px;
+  background-color: #fafbfd;
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 9rem;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 0.9px 4px -1px rgb(0 0 0 / 8%), 0 2.6px 8px -1px rgb(0 0 0 / 6%), 0 5.7px 12px -1px rgb(0 0 0 / 5%), 0 15px 15px -1px rgb(0 0 0 / 4%);
+    background-color: #fff;
+
+    .content-left {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .content-right {
+      display: flex;
+      align-items: center;
+
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 90%;
+        font-size: 14px;
+        font-weight: 400;
+        color: #343741;
+
+        .ant-form-item {
+          width: 100%;
+
+          label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1c21;
+          }
+
+          .ant-input-password {
+            height: 40px;
+            border-radius: 6px;
+            background-color: #fbfcfd;
+
+            .ant-input {
+              border-radius: 6px 0 0 6px;
+              background-color: #fbfcfd;
+            }
+          }
+
+          .ant-btn {
+            width: 100%;
+            height: 40px;
+            border-radius: 6px;
+            border-color: #07c;
+            background-color: #07c;
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}

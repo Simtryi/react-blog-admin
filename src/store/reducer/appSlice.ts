@@ -16,7 +16,7 @@ const initialState: AppState = {
     routes: [
         {
             path: 'index',
-            breadcrumbName: 'home'
+            breadcrumbName: 'container'
         },
         {
             path: 'first',

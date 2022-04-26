@@ -3,7 +3,7 @@
  */
 enum IconType {
     USER = "blog-user",                 //  用户图标
-    USER_SETTING = "blog-user-setting", //  账户设置图标
+    ACCOUNT = "blog-account",           //  账户图标
     PASSWORD = "blog-password",         //  密码图标
     MENU = "blog-menu",                 //  菜单图标
     HOME = "blog-home",                 //  主页图标

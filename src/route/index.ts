@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import MenuType from "../common/enums/MenuType";
 import {HomeOutlined} from "@ant-design/icons";
-import Home from "../view/home";
+import Home from "../view/container";
 
 /**
  * 路由
@@ -30,7 +30,7 @@ const menuRoutes: MenuRoute[] = [
     {
         path: "/",
         name: "首页",
-        code: "home",
+        code: "container",
         icon: HomeOutlined,
         component: Home
     }

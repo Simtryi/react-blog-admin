@@ -70,7 +70,7 @@ const LayoutHeader: FC = () => {
                                 <li>
                                     <div className="dropdown-item">
                                         <div className="dropdown-icon">
-                                            <Icon type={IconType.USER_SETTING}/>
+                                            <Icon type={IconType.ACCOUNT}/>
                                         </div>
                                         <div className="dropdown-title">
                                             账户设置
