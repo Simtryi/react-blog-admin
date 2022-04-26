@@ -2,7 +2,6 @@ import {FC} from "react";
 import {Layout} from "antd";
 import LayoutHeader from "../../component/LayoutHeader";
 import LayoutNavigation from "../../component/LayoutNavigation";
-import Account from "../account";
 import "./index.less";
 
 /**
@@ -14,7 +13,6 @@ const Container: FC = () => {
             <LayoutHeader/>
             <LayoutNavigation/>
              <Layout.Content>
-                 <Account/>
              </Layout.Content>
          </Layout>
     )

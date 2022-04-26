@@ -7,7 +7,7 @@ import {login} from "../../api/admin";
 import {message} from "antd";
 import SVG from "react-inlinesvg";
 import classNames from "classnames";
-import Icon from "../../component/Icon";
+import Icons from "../../component/Icons";
 import IconType from "../../common/enums/IconType";
 
 import bg from "../../assets/img/bg.png";
@@ -90,7 +90,7 @@ const Login: FC = () => {
                         <animated.div style={userInputStyles}>
                             <div className={classNames("input-group", {"focused": userFocus || user.username.length !== 0})}>
                                 <div className="icon">
-                                    <Icon type={IconType.USER}/>
+                                    <Icons type={IconType.USER}/>
                                 </div>
                                 <div>
                                     <h5>用户名</h5>
@@ -109,7 +109,7 @@ const Login: FC = () => {
                         <animated.div style={pwdInputStyles}>
                             <div className={classNames("input-group", {"focused": pwdFocus || user.password.length !== 0})}>
                                 <div className="icon">
-                                    <Icon type={IconType.PASSWORD}/>
+                                    <Icons type={IconType.PASSWORD}/>
                                 </div>
                                 <div>
                                     <h5>密码</h5>

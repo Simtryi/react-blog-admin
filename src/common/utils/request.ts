@@ -27,10 +27,10 @@ const axiosInstance: AxiosInstance = Axios.create(defaultConfig)
  */
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     //  每个请求携带 token
-    const token = store.getState().user.token
-    if (token && config.headers) {
-        config.headers.Authorization = token
-    }
+    // const token = store.getState().user.token
+    // if (token && config.headers) {
+    //     config.headers.Authorization = token
+    // }
 
     return config
 }, error => {

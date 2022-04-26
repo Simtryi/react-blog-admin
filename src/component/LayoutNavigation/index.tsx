@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
 import {Button, Drawer} from "antd";
 import LayoutMenu from "../LayoutMenu";
-import Icon from "../Icon";
+import Icons from "../Icons";
 import IconType from "../../common/enums/IconType";
 import classNames from "classnames";
 import "./index.less";
@@ -28,7 +28,7 @@ const LayoutNavigation: FC = () => {
                         <div className="nav-home">
                             <div className="nav-item">
                                 <div className="item-icon">
-                                    <Icon type={IconType.HOME}/>
+                                    <Icons type={IconType.HOME}/>
                                 </div>
                                 <div className="item-title">
                                     Home
@@ -46,7 +46,7 @@ const LayoutNavigation: FC = () => {
                     <Button
                         type="ghost"
                         size="small"
-                        icon={<Icon type={IconType.CLOSE}/>}
+                        icon={<Icons type={IconType.CLOSE}/>}
                         onClick={() => dispatch(setNavStatus(false))}
                     />
                 </div>

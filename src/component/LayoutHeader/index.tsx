@@ -6,7 +6,7 @@ import {BellOutlined, UserOutlined} from "@ant-design/icons";
 import LayoutBreadcrumb from "../LayoutBreadcrumb";
 import {logout} from "../../api/admin";
 import classNames from "classnames";
-import Icon from "../Icon";
+import Icons from "../Icons";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
 import {useNavigate} from "react-router-dom";
@@ -70,7 +70,7 @@ const LayoutHeader: FC = () => {
                                 <li>
                                     <div className="dropdown-item">
                                         <div className="dropdown-icon">
-                                            <Icon type={IconType.ACCOUNT}/>
+                                            <Icons type={IconType.ACCOUNT}/>
                                         </div>
                                         <div className="dropdown-title">
                                             账户设置
@@ -80,7 +80,7 @@ const LayoutHeader: FC = () => {
                                 <li>
                                     <div className="dropdown-item">
                                         <div className="dropdown-icon">
-                                            <Icon type={IconType.LOGOUT}/>
+                                            <Icons type={IconType.LOGOUT}/>
                                         </div>
                                         <div className="dropdown-title" onClick={() => handleLogout()}>
                                             注销
@@ -106,7 +106,7 @@ const LayoutHeader: FC = () => {
                     <Button
                         type="ghost"
                         size="small"
-                        icon={<Icon type={IconType.MENU}/>}
+                        icon={<Icons type={IconType.MENU}/>}
                         onClick={() => handleNavStatus()}
                     />
                 </div>

@@ -9,7 +9,7 @@ interface IProps {
 /**
  * 图标
  */
-const Icon: FC<IProps> = (props: IProps) => {
+const Icons: FC<IProps> = (props: IProps) => {
     const IconFont = createFromIconfontCN({
         scriptUrl: "//at.alicdn.com/t/font_3346939_w7vctoh9gfm.js"
     })
@@ -17,4 +17,4 @@ const Icon: FC<IProps> = (props: IProps) => {
     return <IconFont type={props.type}/>
 }
 
-export default Icon
+export default Icons
