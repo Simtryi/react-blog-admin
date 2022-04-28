@@ -3,7 +3,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
 import {Button, Drawer} from "antd";
 import LayoutMenu from "../LayoutMenu";
-import Icons from "../Icons";
+import Icons from "../../components/Icons";
 import IconType from "../../common/enums/IconType";
 import classNames from "classnames";
 import "./index.less";

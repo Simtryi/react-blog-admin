@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Button, Form, Input, message} from "antd";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setPassword} from "../../store/reducer/userSlice";
-import {updatePassword} from "../../api/admin";
+import {updatePassword} from "../../services/admin";
 import SVG from "react-inlinesvg";
 import account from "../../assets/img/account.svg";
 import "./index.less";

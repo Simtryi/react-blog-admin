@@ -3,11 +3,11 @@ import {useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setPassword, setToken, setUsername} from "../../store/reducer/userSlice";
 import {useSpring, animated} from "@react-spring/web";
-import {login} from "../../api/admin";
+import {login} from "../../services/admin";
 import {message} from "antd";
 import SVG from "react-inlinesvg";
 import classNames from "classnames";
-import Icons from "../../component/Icons";
+import Icons from "../../components/Icons";
 import IconType from "../../common/enums/IconType";
 
 import bg from "../../assets/img/bg.png";

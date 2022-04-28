@@ -6,13 +6,11 @@ import {Route} from "antd/lib/breadcrumb/Breadcrumb";
  */
 interface AppState {
     navStatus: boolean      //  导航栏状态 true: 打开, false: 关闭
-    dropdownStatue: boolean //  下拉菜单状态 true: 打开, false: 关闭
     routes: Route[]         //  面包屑路由
 }
 
 const initialState: AppState = {
     navStatus: false,
-    dropdownStatue: false,
     routes: [
         {
             path: 'index',
@@ -36,18 +34,12 @@ export const appSlice = createSlice({
         //  初始化应用
         initApp: (state: AppState) => {
             state.navStatus = initialState.navStatus
-            state.dropdownStatue = initialState.dropdownStatue
             state.routes = initialState.routes
         },
 
         //  设置导航栏状态
         setNavStatus: (state: AppState, action: PayloadAction<boolean>) => {
             state.navStatus = action.payload
-        },
-
-        //  设置下拉菜单状态
-        setDropdownStatus: (state: AppState, action: PayloadAction<boolean>) => {
-            state.dropdownStatue = action.payload
         },
 
         //  设置面包屑路由
@@ -57,5 +49,5 @@ export const appSlice = createSlice({
     }
 })
 
-export const {initApp, setNavStatus, setDropdownStatus, setRoutes} = appSlice.actions
+export const {initApp, setNavStatus, setRoutes} = appSlice.actions
 export default appSlice.reducer

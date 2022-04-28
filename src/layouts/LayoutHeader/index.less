@@ -25,99 +25,16 @@
       color: #fff;
     }
 
-    .top-center {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-    }
-
     .top-right {
       display: flex;
-      justify-content: space-between;
+      float: right;
       align-items: center;
       height: 100%;
       padding-left: 8px;
       padding-right: 8px;
 
-      .header-item {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 40px;
-        height: 100%;
+      .header-avatar {
 
-        .anticon {
-          svg {
-            width: 16px;
-            height: 16px;
-            color: #fff;
-          }
-        }
-      }
-
-      .header-dropdown {
-        position: fixed;
-        top: 55px;
-        right: 7px;
-        width: 160px;
-
-        .dropdown-menu {
-          display: block;
-          min-width: 112px;
-          margin: 0;
-          padding: 0;
-          border-radius: 6px;
-          box-shadow: 0 1px 5px rgb(0 0 0 / 10%), 0 3.6px 13px rgb(0 0 0 / 7%), 0 8.4px 23px rgb(0 0 0 / 6%), 0 23px 35px rgb(0 0 0 / 5%);
-          list-style: none;
-          line-height: 0;
-          background-color: #fff;
-
-          .dropdown-item {
-            display: flex;
-            align-items: center;
-            padding: 12px;
-            cursor: pointer;
-
-            .dropdown-icon {
-              margin-right: 8px;
-
-              .anticon {
-                width: 16px;
-                height: 16px;
-              }
-            }
-
-            .dropdown-title {
-              font-size: 14px;
-              font-weight: 400;
-              font-family: Helvetica, Arial, sans-serif;
-              color: #343741;;
-            }
-
-            &:hover .dropdown-title {
-              text-decoration: underline;
-            }
-          }
-
-          &:before {
-            content: "";
-            position: absolute;
-            top: -9px;
-            right: 20px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 9px;
-            border-color: #fff #fff transparent transparent;
-            background-color: #fff;
-            transform: rotate(-45deg);
-          }
-        }
-
-        .dropdown-menu-close {
-          display: none;
-        }
       }
     }
   }
@@ -187,6 +104,24 @@
       align-items: center;
       margin-left: 8px;
       margin-right: 8px;
+    }
+  }
+}
+
+.ant-dropdown {
+  top: 50px !important;
+  width: 200px;
+
+  .ant-dropdown-menu {
+    .ant-dropdown-menu-item-disabled {
+      width: 100%;
+      padding: 12px;
+      border-bottom: 1px solid #d3dae6;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: left;
+      color: #1a1c21;
+      cursor: auto;
     }
   }
 }
