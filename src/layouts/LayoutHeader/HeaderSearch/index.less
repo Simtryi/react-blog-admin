@@ -1,0 +1,26 @@
+.header-search {
+  display: flex;
+  align-items: center;
+
+  .input {
+    width: 0;
+    min-width: 0;
+    border-radius: 0;
+    overflow: hidden;
+    background: transparent;
+    transition: width 0.3s, margin-left 0.3s;
+
+    :global(.ant-select-selection) {
+      background: transparent;
+    }
+
+    input {
+      box-shadow: none !important;
+    }
+
+    &.show {
+      width: 210px;
+      margin-left: 8px;
+    }
+  }
+}

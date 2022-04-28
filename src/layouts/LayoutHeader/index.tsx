@@ -3,8 +3,9 @@ import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
 import {Layout, Button} from "antd";
 import {BellOutlined} from "@ant-design/icons";
-import LayoutBreadcrumb from "../LayoutBreadcrumb";
+import HeaderSearch from "./HeaderSearch";
 import AvatarDropdown from "./AvatarDropdown";
+import LayoutBreadcrumb from "../LayoutBreadcrumb";
 import Icons from "../../components/Icons";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
@@ -29,10 +30,13 @@ const LayoutHeader: FC = () => {
                 </div>
 
                 <div className="top-right">
-                    <div className="header-notification">
+                    <div className="header-item">
+                        <HeaderSearch/>
+                    </div>
+                    <div className="header-item">
                         <BellOutlined className="notification"/>
                     </div>
-                    <div className="header-avatar">
+                    <div className="header-item">
                         <AvatarDropdown/>
                     </div>
                 </div>

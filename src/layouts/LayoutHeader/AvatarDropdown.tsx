@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import {initApp} from "../../store/reducer/appSlice";
 import {initUser} from "../../store/reducer/userSlice";
 import {logout} from "../../services/admin";
-import HeaderDropdown from "../../components/HeaderDropdown";
+import HeaderDropdown from "./HeaderDropdown";
 import IconType from "../../common/enums/IconType";
 import Icons from "../../components/Icons";
 
@@ -68,8 +68,7 @@ const AvatarDropdown: FC = () => {
         >
             <Avatar
                 size="small"
-                style={{backgroundColor: "#3491FA"}}
-                icon={<UserOutlined/>}
+                src="https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png"
             />
         </HeaderDropdown>
     )
