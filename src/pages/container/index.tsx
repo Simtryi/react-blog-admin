@@ -2,7 +2,6 @@ import {FC} from "react";
 import {Layout} from "antd";
 import LayoutHeader from "../../layouts/LayoutHeader";
 import LayoutNavigation from "../../layouts/LayoutNavigation";
-import HeaderSearch from "../../layouts/LayoutHeader/HeaderSearch";
 import "./index.less";
 
 /**
@@ -12,7 +11,7 @@ const Container: FC = () => {
     return (
          <Layout className="container">
             <LayoutHeader/>
-            {/*<LayoutNavigation/>*/}
+            <LayoutNavigation/>
             {/*<Layout.Content>*/}
             {/*</Layout.Content>*/}
          </Layout>

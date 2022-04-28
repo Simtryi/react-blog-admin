@@ -9,9 +9,9 @@ interface IProps {
 }
 
 /**
- * 布局-面包屑
+ * 头部-面包屑
  */
-const LayoutBreadcrumb: FC<IProps> = (props: IProps) => {
+const HeaderBreadcrumb: FC<IProps> = (props: IProps) => {
     const itemRender = (route: any, params: any, routes: any, paths: any) => {
         const length = routes.length
 
@@ -36,4 +36,4 @@ const LayoutBreadcrumb: FC<IProps> = (props: IProps) => {
     )
 }
 
-export default LayoutBreadcrumb
+export default HeaderBreadcrumb

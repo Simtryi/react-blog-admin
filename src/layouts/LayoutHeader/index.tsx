@@ -5,7 +5,7 @@ import {Layout, Button} from "antd";
 import {BellOutlined} from "@ant-design/icons";
 import HeaderSearch from "./HeaderSearch";
 import AvatarDropdown from "./AvatarDropdown";
-import LayoutBreadcrumb from "../LayoutBreadcrumb";
+import HeaderBreadcrumb from "./HeaderBreadcrumb";
 import Icons from "../../components/Icons";
 import IconType from "../../common/enums/IconType";
 import "./index.less";
@@ -26,7 +26,7 @@ const LayoutHeader: FC = () => {
         <div className="layout-header">
             <Layout.Header className="header-top">
                 <div className="top-left">
-                    <div>BlogAdmin</div>
+                    <div className="header-title">Blog Admin</div>
                 </div>
 
                 <div className="top-right">
@@ -57,7 +57,7 @@ const LayoutHeader: FC = () => {
                 </div>
 
                 <div className="header-breadcrumb">
-                    <LayoutBreadcrumb routes={app.routes}/>
+                    <HeaderBreadcrumb routes={app.routes}/>
                 </div>
             </Layout.Header>
         </div>

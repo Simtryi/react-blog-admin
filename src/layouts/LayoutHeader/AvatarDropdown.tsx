@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import {Avatar, Menu, message} from "antd";
-import {UserOutlined} from "@ant-design/icons";
 import {ItemType} from "antd/es/menu/hooks/useItems";
 import type {MenuInfo} from "rc-menu/lib/interface";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
