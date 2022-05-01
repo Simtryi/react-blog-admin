@@ -22,15 +22,13 @@ const Account: FC = () => {
         }
 
         //  更改密码
-        const response = await updatePassword(user.username, values.oldPassword, values.newPassword)
-        //  密码更改成功
-        if (response.code === "OK") {
-            //  设置新密码
-            dispatch(setPassword(values.newPassword))
+        await updatePassword(user.username, values.oldPassword, values.newPassword)
 
-            //  提示消息
-            message.success("密码更改成功")
-        }
+        //  设置新密码
+        dispatch(setPassword(values.newPassword))
+
+        //  提示消息
+        message.success("密码更改成功")
     }
 
     return (
@@ -79,7 +77,7 @@ const Account: FC = () => {
                     </Form>
                 </div>
             </div>
-        </div>
+    </div>
     )
 }
 

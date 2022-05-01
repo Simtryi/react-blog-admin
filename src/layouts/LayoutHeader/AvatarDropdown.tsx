@@ -8,8 +8,7 @@ import {initApp} from "../../store/reducer/appSlice";
 import {initUser} from "../../store/reducer/userSlice";
 import {logout} from "../../services/admin";
 import HeaderDropdown from "./HeaderDropdown";
-import IconType from "../../common/enums/IconType";
-import Icons from "../../components/Icons";
+import Icons, {IconType} from "../../components/Icons";
 
 /**
  * 头部-头像
@@ -38,7 +37,7 @@ const AvatarDropdown: FC = () => {
     const handleMenuClick = (e: MenuInfo) => {
         const {key} = e
         if (key === "account") {
-            //  todo 账户设置
+            navigate("/account")
         } else if (key === "logout") {
             handleLogout()
         }
@@ -46,19 +45,18 @@ const AvatarDropdown: FC = () => {
 
     //  注销
     const handleLogout = async () => {
-        const response = await logout()
-        //  注销成功
-        if (response.code === "OK") {
-            //  初始化应用
-            dispatch(initApp())
-            //  初始化用户
-            dispatch(initUser())
+        //  注销
+        await logout()
 
-            //  提示消息
-            message.success("注销成功")
-            //  跳转页面
-            navigate("/login")
-        }
+        //  初始化应用
+        dispatch(initApp())
+        //  初始化用户
+        dispatch(initUser())
+
+        //  提示消息
+        message.success("注销成功")
+        //  跳转页面
+        navigate("/login")
     }
 
     return (

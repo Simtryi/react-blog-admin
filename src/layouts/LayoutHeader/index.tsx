@@ -1,13 +1,12 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
 import {setNavStatus} from "../../store/reducer/appSlice";
-import {Layout, Button} from "antd";
+import {Button} from "antd";
 import {BellOutlined} from "@ant-design/icons";
 import HeaderSearch from "./HeaderSearch";
 import AvatarDropdown from "./AvatarDropdown";
 import HeaderBreadcrumb from "./HeaderBreadcrumb";
-import Icons from "../../components/Icons";
-import IconType from "../../common/enums/IconType";
+import Icons, {IconType} from "../../components/Icons";
 import "./index.less";
 
 /**
@@ -24,7 +23,7 @@ const LayoutHeader: FC = () => {
 
     return (
         <div className="layout-header">
-            <Layout.Header className="header-top">
+            <div className="header-top">
                 <div className="top-left">
                     <div className="header-title">Blog Admin</div>
                 </div>
@@ -40,9 +39,9 @@ const LayoutHeader: FC = () => {
                         <AvatarDropdown/>
                     </div>
                 </div>
-            </Layout.Header>
+            </div>
 
-            <Layout.Header className="header-bottom">
+            <div className="header-bottom">
                 <div className="header-menu">
                     <Button
                         type="ghost"
@@ -57,9 +56,9 @@ const LayoutHeader: FC = () => {
                 </div>
 
                 <div className="header-breadcrumb">
-                    <HeaderBreadcrumb routes={app.routes}/>
+                    <HeaderBreadcrumb/>
                 </div>
-            </Layout.Header>
+            </div>
         </div>
     )
 }

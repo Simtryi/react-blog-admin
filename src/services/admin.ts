@@ -1,4 +1,4 @@
-import http from "../common/utils/request";
+import http from "../utils/request";
 
 /**
  * 登录

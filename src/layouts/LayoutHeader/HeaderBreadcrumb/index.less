@@ -2,11 +2,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 24px;
   font-size: 12px;
   font-weight: 500;
   font-family: Helvetica, Arial, sans-serif;
 
   .default {
+    height: 24px;
+    line-height: 16px;
     padding: 4px 16px;
     border-radius: 6px;
     background-color: rgba(52,55,65,.2);
@@ -14,6 +17,9 @@
   }
 
   .first {
+    display: block;
+    height: 24px;
+    line-height: 16px;
     padding: 4px 16px;
     border-radius: 6px 0 0 6px;
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
@@ -28,6 +34,9 @@
   }
 
   .middle {
+    display: block;
+    height: 24px;
+    line-height: 16px;
     padding: 4px 16px;
     margin-left: -4px;
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%, 8px 50%);
@@ -41,14 +50,16 @@
     }
   }
 
- .last {
-   padding: 4px 16px;
-   margin-left: -4px;
-   border-radius: 0 6px 6px 0;
-   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
-   background-color: rgba(52,55,65,0.2);
-   color: #343741;
- }
+  .last {
+    height: 24px;
+    line-height: 16px;
+    padding: 4px 16px;
+    margin-left: -4px;
+    border-radius: 0 6px 6px 0;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 8px 50%);
+    background-color: rgba(52,55,65,0.2);
+    color: #343741;
+  }
 
   a {
     &::selection {

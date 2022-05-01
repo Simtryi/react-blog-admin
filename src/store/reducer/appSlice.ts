@@ -1,30 +1,18 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Route} from "antd/lib/breadcrumb/Breadcrumb";
 
 /**
  * 应用状态
  */
 interface AppState {
-    navStatus: boolean      //  导航栏状态 true: 打开, false: 关闭
-    routes: Route[]         //  面包屑路由
+    navStatus: boolean              //  导航栏状态 true: 打开, false: 关闭
+    defaultSelectedKeys: string[]   //  初始选中的菜单项 key 数组
+    openKeys: string[]              //  当前展开的 SubMenu 菜单项 key 数组
 }
 
 const initialState: AppState = {
     navStatus: false,
-    routes: [
-        {
-            path: 'index',
-            breadcrumbName: 'container'
-        },
-        {
-            path: 'first',
-            breadcrumbName: 'first'
-        },
-        {
-            path: 'second',
-            breadcrumbName: 'second',
-        }
-    ]
+    defaultSelectedKeys: [],
+    openKeys: []
 }
 
 export const appSlice = createSlice({
@@ -34,7 +22,8 @@ export const appSlice = createSlice({
         //  初始化应用
         initApp: (state: AppState) => {
             state.navStatus = initialState.navStatus
-            state.routes = initialState.routes
+            state.defaultSelectedKeys = []
+            state.openKeys = []
         },
 
         //  设置导航栏状态
@@ -42,12 +31,17 @@ export const appSlice = createSlice({
             state.navStatus = action.payload
         },
 
-        //  设置面包屑路由
-        setRoutes: (state: AppState, action: PayloadAction<Route[]>) => {
-            state.routes = action.payload
+        //  设置初始选中的菜单项
+        setDefaultSelectKeys: (state: AppState, action: PayloadAction<string[]>) => {
+            state.defaultSelectedKeys = action.payload
+        },
+
+        //  设置当前展开的 SubMenu 菜单项
+        setOpenKeys: (state: AppState, action: PayloadAction<string[]>) => {
+            state.openKeys = action.payload
         }
     }
 })
 
-export const {initApp, setNavStatus, setRoutes} = appSlice.actions
+export const {initApp, setNavStatus, setDefaultSelectKeys, setOpenKeys} = appSlice.actions
 export default appSlice.reducer

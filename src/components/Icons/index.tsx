@@ -1,6 +1,18 @@
 import {FC} from "react";
 import {createFromIconfontCN} from "@ant-design/icons";
-import IconType from "../../common/enums/IconType";
+
+/**
+ * 图标类型
+ */
+export enum IconType {
+    USER = "blog-user",                 //  用户图标
+    ACCOUNT = "blog-account",           //  账户图标
+    PASSWORD = "blog-password",         //  密码图标
+    MENU = "blog-menu",                 //  菜单图标
+    HOME = "blog-home",                 //  主页图标
+    CLOSE = "blog-close",               //  关闭图标
+    LOGOUT = "blog-logout",             //  注销图标
+}
 
 interface IProps {
     type: IconType    //  图标类型

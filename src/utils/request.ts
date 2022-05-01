@@ -1,6 +1,6 @@
 import Axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse} from "axios";
 import qs from "qs";
-import {store} from "../../store";
+import {store} from "../store";
 import {message} from "antd";
 
 /**
@@ -27,10 +27,10 @@ const axiosInstance: AxiosInstance = Axios.create(defaultConfig)
  */
 axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
     //  每个请求携带 token
-    // const token = store.getState().user.token
-    // if (token && config.headers) {
-    //     config.headers.Authorization = token
-    // }
+    const token = store.getState().user.token
+    if (token && config.headers) {
+        config.headers.Authorization = token
+    }
 
     return config
 }, error => {
@@ -43,7 +43,17 @@ axiosInstance.interceptors.request.use((config: AxiosRequestConfig) => {
 axiosInstance.interceptors.response.use((response: AxiosResponse): Promise<any> => {
     const data = response.data
     if (data.code !== "OK") {
-        message.warning(data.msg)
+        if (data.code === "UNAUTHORIZED") {
+            location.replace("/401")
+        } else if (data.code === "FORBIDDEN") {
+            location.replace("/403")
+        } else if (data.code === "NOT_FOUND") {
+            location.replace("/404")
+        } else if (data.code === "UNKNOWN") {
+            location.replace("/500")
+        } else {
+            message.warning(data.msg)
+        }
     }
     return data
 }, error => {

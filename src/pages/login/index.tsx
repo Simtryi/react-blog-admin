@@ -7,8 +7,7 @@ import {login} from "../../services/admin";
 import {message} from "antd";
 import SVG from "react-inlinesvg";
 import classNames from "classnames";
-import Icons from "../../components/Icons";
-import IconType from "../../common/enums/IconType";
+import Icons, {IconType} from "../../components/Icons";
 
 import bg from "../../assets/img/bg.png";
 import illustration from "../../assets/img/illustration.svg";
@@ -23,23 +22,22 @@ const Login: FC = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [userFocus, setUserFocus] = useState(false)
-    const [pwdFocus, setPwdFocus] = useState(false)
+    const [userFocus, setUserFocus] = useState<boolean>(false)
+    const [pwdFocus, setPwdFocus] = useState<boolean>(false)
 
     //  登录
     const handleLogin = async () => {
+        //  登录
         const response = await login(user.username, user.password)
-        //  登录成功
-        if (response.code === "OK") {
-            //  设置 token
-            const token = response.data.authenticationSchema + response.data.token
-            dispatch(setToken(token))
 
-            //  提示消息
-            message.success("登录成功")
-            //  跳转页面
-            navigate("/")
-        }
+        //  设置 token
+        const token = response.data.authenticationSchema + response.data.token
+        dispatch(setToken(token))
+
+        //  提示消息
+        message.success("登录成功")
+        //  跳转页面
+        navigate("/")
     }
 
     //  标题动画样式

@@ -22,7 +22,6 @@ const HeaderSearch: FC<IProps> = (props: IProps) => {
         <div
             className={classNames("header-search", props.className)}
             onClick={() => {
-                console.log("visible...")
                 setVisible(true)
                 if (visible && inputRef.current) {
                     inputRef.current.focus();
