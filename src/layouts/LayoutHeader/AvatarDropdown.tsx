@@ -61,6 +61,7 @@ const AvatarDropdown: FC = () => {
 
     return (
         <HeaderDropdown
+            overlayClassName="avatar-dropdown"
             overlay={<Menu items={items} onClick={(e) => handleMenuClick(e)}/>}
         >
             <Avatar

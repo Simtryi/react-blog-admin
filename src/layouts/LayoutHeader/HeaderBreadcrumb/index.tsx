@@ -13,11 +13,6 @@ const HeaderBreadcrumb: FC = () => {
     const location = useLocation()
 
     useEffect(() => {
-        getRoutes()
-    }, [location.pathname])
-
-    //  获取面包屑路由
-    const getRoutes = () => {
         if (location.pathname === "/") {
             setRoutes([{
                 path: "/",
@@ -45,7 +40,7 @@ const HeaderBreadcrumb: FC = () => {
             })
         }
         setRoutes(routeList)
-    }
+    }, [location.pathname])
 
     const itemRender = (route: any, params: any, routes: any, paths: any) => {
         const length = routes.length

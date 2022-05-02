@@ -1,26 +1,44 @@
 .ant-menu {
+  background-color: #fafbfd;
+
+  .ant-menu-item[style="padding-left: 24px;"] {
+    padding-left: 24px !important;
+    margin-bottom: 4px !important;
+    border-top: 1px solid #d3dae6;
+    background-color: #fafbfd;
+  }
+
   .ant-menu-submenu {
     border-top: 1px solid #d3dae6;
-    background: #fafbfd;
+    background-color: #fafbfd;
 
-    .ant-menu-item-only-child {
-      margin-bottom: 4px !important;
-      padding-left: 8px !important;
-      padding-right: 8px !important;
+    .ant-menu-sub {
+      background-color: #fafbfd;
 
-      .ant-menu-title-content {
-        display: flex;
-        align-items: center;
-        height: 32px;
-        padding-left: 40px;
-        border-radius: 6px;
-        color: #69707d;
+      .ant-menu-item-only-child {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        margin-bottom: 4px !important;
 
-        &:hover {
-          text-decoration: underline;
-          background-color: rgba(211,218,230,.25);
+        .ant-menu-title-content {
+          display: flex;
+          align-items: center;
+          height: 32px;
+          padding-left: 40px;
+          border-radius: 6px;
+          color: #69707d;
+
+          &:hover {
+            text-decoration: underline;
+            background-color: rgba(211,218,230,.25);
+          }
         }
       }
     }
+  }
+
+  .anticon {
+    width: 16px;
+    height: 16px;
   }
 }

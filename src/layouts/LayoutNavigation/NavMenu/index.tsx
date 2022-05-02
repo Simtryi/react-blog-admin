@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHook";
-import {setDefaultSelectKeys, setOpenKeys} from "../../../store/reducer/appSlice";
+import {setOpenKeys, setSelectedKeys} from "../../../store/reducer/appSlice";
 import {useNavigate} from "react-router-dom";
 import {MenuInfo, SelectInfo} from "rc-menu/lib/interface";
 import {Menu} from "antd";
@@ -23,7 +23,7 @@ const NavMenu: FC = () => {
     //  处理选中事件
     const handleSelect = (e: SelectInfo) => {
         const {selectedKeys} = e
-        dispatch(setDefaultSelectKeys(selectedKeys))
+        dispatch(setSelectedKeys(selectedKeys))
     }
 
     //  处理点击事件
@@ -43,7 +43,7 @@ const NavMenu: FC = () => {
         <Menu mode="inline"
               items={menus}
               openKeys={app.openKeys}
-              defaultSelectedKeys={app.defaultSelectedKeys}
+              selectedKeys={app.selectedKeys}
               onOpenChange={(e) => handleOpenChange(e)}
               onSelect={(e) => handleSelect(e)}
               onClick={(e) => handleClick(e)}

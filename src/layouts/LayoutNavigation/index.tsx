@@ -1,7 +1,7 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../hooks/reduxHook";
-import {setNavStatus} from "../../store/reducer/appSlice";
-import {Link} from "react-router-dom";
+import {setNavStatus, setOpenKeys, setSelectedKeys} from "../../store/reducer/appSlice";
+import {useNavigate} from "react-router-dom";
 import {Button, Drawer} from "antd";
 import NavMenu from "./NavMenu";
 import classNames from "classnames";
@@ -14,9 +14,23 @@ import "./index.less";
 const LayoutNavigation: FC = () => {
     const app = useAppSelector(state => state.app)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
+
+    /**
+     * 处理点击事件
+     */
+    const handleClick = () => {
+        //  设置当前展开的 SubMenu 菜单项为空
+        dispatch(setOpenKeys([]))
+        //  设置初始选中的菜单项为空
+        dispatch(setSelectedKeys([]))
+
+        //  跳转到主页
+        navigate("/")
+    }
 
     return (
-        <div className="layout-nav">
+        <div className={classNames("layout-nav", {"layout-nav-hidden": !app.navStatus})}>
                 <Drawer
                     className="nav-drawer"
                     placement="left"
@@ -30,8 +44,8 @@ const LayoutNavigation: FC = () => {
                                 <div className="item-icon">
                                     <Icons type={IconType.HOME}/>
                                 </div>
-                                <div className="item-title">
-                                    <Link to="/">Home</Link>
+                                <div className="item-title" onClick={() => handleClick()}>
+                                    Home
                                 </div>
                             </div>
                         </div>

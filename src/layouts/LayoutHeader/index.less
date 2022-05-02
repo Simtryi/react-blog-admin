@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 2;
   box-shadow: 0 0.7px 1.4px rgb(0 0 0 / 7%), 0 1.9px 4px rgb(0 0 0 / 5%), 0 4.5px 10px rgb(0 0 0 / 5%);
 
   .header-top {
@@ -93,22 +94,23 @@
       width: 40px;
 
       button {
-        width: 40px;
-        height: 40px;
+        width: 24px;
+        height: 24px;
+        padding: 0;
         border: none;
-        background: none;
+        border-radius: 6px;
+        background-color: rgb(0, 191, 179);
 
         span {
-          width: 24px;
+          position: absolute;
+          top: 0;
+          left: 0;
           height: 24px;
-          margin: 0;
-          padding: 0;
-          border-radius: 6px;
+          width: 24px;
           font-size: 12px;
           font-weight: 500;
           font-family: Helvetica, Arial, sans-serif;
           line-height: 24px;
-          background-color: rgb(0, 191, 179);
           color: #000;
         }
       }
@@ -124,7 +126,7 @@
   }
 }
 
-.ant-dropdown {
+.avatar-dropdown {
   top: 50px !important;
   width: 200px;
 

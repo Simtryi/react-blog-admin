@@ -40,15 +40,7 @@ const routes: RouteItem[] = [{
     }, {
         path: "user",
         element: React.lazy(() => import("../pages/user")),
-        meta: {name: "用户管理"},
-        children: [{
-            index: true,
-            element: React.lazy(() => import("../pages/user/UserList"))
-        }, {
-            path: "add",
-            element: React.lazy(() => import("../pages/user/UserAdd")),
-            meta: {name: "添加用户"}
-        }]
+        meta: {name: "用户管理"}
     }, {
         path: "401",
         element: React.lazy(() => import("../pages/results/Unauthorized")),

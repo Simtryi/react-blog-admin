@@ -2,6 +2,7 @@
   position: fixed;
   top: 96px;
   left: 0;
+  z-index: 2;
   width: 248px;
   height: calc(100% - 6rem);
 
@@ -60,10 +61,7 @@
           .item-title {
             font-size: 14px;
             font-weight: 400;
-
-            a {
-              color: #343741;
-            }
+            color: #343741;
           }
 
           &:hover .item-title {
@@ -78,7 +76,7 @@
     position: fixed;
     top: 104px;
     left: 276px;
-    transition: opacity 0.2s;
+    transition: width 0.2s, opacity 0.2s;
 
     button {
       width: 24px;
@@ -96,6 +94,15 @@
   }
 
   .nav-close {
+    width: 0;
     opacity: 0;
+  }
+}
+
+.layout-nav-hidden {
+  width: 0;
+
+  .nav-drawer {
+    width: 0;
   }
 }

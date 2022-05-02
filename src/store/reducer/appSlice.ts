@@ -4,14 +4,14 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
  * 应用状态
  */
 interface AppState {
-    navStatus: boolean              //  导航栏状态 true: 打开, false: 关闭
-    defaultSelectedKeys: string[]   //  初始选中的菜单项 key 数组
-    openKeys: string[]              //  当前展开的 SubMenu 菜单项 key 数组
+    navStatus: boolean      //  导航栏状态 true: 打开, false: 关闭
+    selectedKeys: string[]  //  当前选中的菜单项 key 数组
+    openKeys: string[]      //  当前展开的 SubMenu 菜单项 key 数组
 }
 
 const initialState: AppState = {
     navStatus: false,
-    defaultSelectedKeys: [],
+    selectedKeys: [],
     openKeys: []
 }
 
@@ -22,7 +22,7 @@ export const appSlice = createSlice({
         //  初始化应用
         initApp: (state: AppState) => {
             state.navStatus = initialState.navStatus
-            state.defaultSelectedKeys = []
+            state.selectedKeys = []
             state.openKeys = []
         },
 
@@ -31,9 +31,9 @@ export const appSlice = createSlice({
             state.navStatus = action.payload
         },
 
-        //  设置初始选中的菜单项
-        setDefaultSelectKeys: (state: AppState, action: PayloadAction<string[]>) => {
-            state.defaultSelectedKeys = action.payload
+        //  设置当前选中的菜单项
+        setSelectedKeys: (state: AppState, action: PayloadAction<string[]>) => {
+            state.selectedKeys = action.payload
         },
 
         //  设置当前展开的 SubMenu 菜单项
@@ -43,5 +43,5 @@ export const appSlice = createSlice({
     }
 })
 
-export const {initApp, setNavStatus, setDefaultSelectKeys, setOpenKeys} = appSlice.actions
+export const {initApp, setNavStatus, setSelectedKeys, setOpenKeys} = appSlice.actions
 export default appSlice.reducer
