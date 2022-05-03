@@ -11,7 +11,7 @@ import "./index.less";
 const Forbidden: FC = () => {
     const navigate = useNavigate()
 
-    const handleClick = () => {
+    const onClick = () => {
         navigate("/")
     }
 
@@ -21,7 +21,7 @@ const Forbidden: FC = () => {
                 <Result
                     icon={<SVG src={forbidden} width={350}/>}
                     subTitle="无权限，禁止访问"
-                    extra={<Button type="primary" onClick={() => handleClick()}>回到主页</Button>}
+                    extra={<Button type="primary" onClick={onClick}>回到主页</Button>}
                 />
             </div>
         </div>

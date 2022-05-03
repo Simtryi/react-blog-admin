@@ -22,8 +22,8 @@ const Login: FC = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
-    const [userFocus, setUserFocus] = useState<boolean>(false)
-    const [pwdFocus, setPwdFocus] = useState<boolean>(false)
+    const [userFocus, setUserFocus] = useState(false)
+    const [pwdFocus, setPwdFocus] = useState(false)
 
     //  登录
     const handleLogin = async () => {

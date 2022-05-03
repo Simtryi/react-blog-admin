@@ -8,17 +8,17 @@ type User = {
     /**
      * 主键
      */
-    id: number
+    id?: number
 
     /**
      * 创建时间
      */
-    createdAt: string
+    createdAt?: string
 
     /**
      * 更新时间
      */
-    updatedAt: string
+    updatedAt?: string
 
     /**
      * 用户名
@@ -43,12 +43,12 @@ type User = {
     /**
      * 头像
      */
-    avatar: string
+    avatar?: string
 
     /**
      * 状态
      */
-    status: UserStatus
+    status?: UserStatus
 
 }
 

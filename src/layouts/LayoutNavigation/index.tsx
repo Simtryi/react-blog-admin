@@ -19,7 +19,7 @@ const LayoutNavigation: FC = () => {
     /**
      * 处理点击事件
      */
-    const handleClick = () => {
+    const onClick = () => {
         //  设置当前展开的 SubMenu 菜单项为空
         dispatch(setOpenKeys([]))
         //  设置初始选中的菜单项为空
@@ -44,7 +44,7 @@ const LayoutNavigation: FC = () => {
                                 <div className="item-icon">
                                     <Icons type={IconType.HOME}/>
                                 </div>
-                                <div className="item-title" onClick={() => handleClick()}>
+                                <div className="item-title" onClick={onClick}>
                                     Home
                                 </div>
                             </div>

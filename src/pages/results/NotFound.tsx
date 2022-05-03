@@ -10,7 +10,8 @@ import "./index.less";
  */
 const NotFound: FC = () => {
     const navigate = useNavigate()
-    const handleClick = () => {
+
+    const onClick = () => {
         navigate("/")
     }
 
@@ -20,7 +21,7 @@ const NotFound: FC = () => {
                 <Result
                     icon={<SVG src={not_found} width={350}/>}
                     subTitle="内容不存在"
-                    extra={<Button type="primary" onClick={() => handleClick()}>回到主页</Button>}
+                    extra={<Button type="primary" onClick={onClick}>回到主页</Button>}
                 />
             </div>
         </div>
