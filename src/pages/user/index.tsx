@@ -1,21 +1,27 @@
-import React, {FC} from "react";
-import type {ProColumns} from '@ant-design/pro-table';
+import React, {FC, useRef} from "react";
+import type {ActionType, ProColumns} from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {Button, FormInstance, PageHeader, Space, Tag} from "antd";
-import {PlusCircleOutlined} from "@ant-design/icons";
+import {Button, Menu, message, PageHeader, Space, Tag} from "antd";
+import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleOutlined} from "@ant-design/icons";
 import User from "../../models/User";
 import UserStatus from "../../models/enums/UserStatus";
-import {list} from "../../services/user";
+import {del, list} from "../../services/user";
 import useFormModal from "../../hooks/useFormModal/useFormModal";
 import UserForm from "./UserForm";
+import ConfirmModal, {ConfirmModalType} from "../../components/ConfirmModal";
+import {ItemType} from "antd/es/menu/hooks/useItems";
+import HeaderDropdown from "../../layouts/LayoutHeader/HeaderDropdown";
+import {MenuInfo} from "rc-menu/lib/interface";
 import "./index.less";
 
 /**
  * 用户列表页面
  */
 const UserList: FC = () => {
+    const actionRef = useRef<ActionType>()
     const {modalRef, FormModal: UserModal} = useFormModal({}, React.forwardRef(UserForm))
 
+    //  列定义
     const columns: ProColumns<User>[] = [
         {
             title: '用户名',
@@ -54,21 +60,88 @@ const UserList: FC = () => {
             title: '操作',
             valueType: 'option',
             key: 'option',
+            width: 30,
+            align: "right",
             render: (text, record, _) => [
                 <Button
-                    type="link"
                     key="edit"
+                    type="link"
+                    className="btn-edit"
+                    icon={<EditOutlined/>}
                     onClick={() => {
-                        modalRef.current?.open({mode: "edit", user: record})
+                        modalRef.current?.open({mode: "edit", user: record, refresh})
                         modalRef.current?.setModalTitle("编辑用户")
                     }}
+                />,
+                <Button
+                    key="delete"
+                    type="link"
+                    className="btn-delete"
+                    icon={<DeleteOutlined/>}
+                    onClick={() => deleteModal(record.id)}
+                />,
+                <HeaderDropdown
+                    key="more"
+                    overlay={<Menu items={items} onClick={(e) => handleMenuClick(e, record)}/>}
+                    placement="bottomRight"
+                    trigger={["click"]}
                 >
-                    编辑
-                </Button>,
-                <Button type="link" key="delete">删除</Button>
+                    <Button
+                        type="link"
+                        className="btn-more"
+                        icon={<EllipsisOutlined />}
+                    />
+                </HeaderDropdown>
             ]
         }
     ]
+
+    //  更多操作菜单元素
+    const items: ItemType[] = [{
+        label: "编辑",
+        key: "edit",
+        icon: <EditOutlined/>
+    }, {
+        label: "删除",
+        key: "delete",
+        icon: <DeleteOutlined/>
+    }]
+
+    //  处理菜单点击事件
+    const handleMenuClick = (e: MenuInfo, record: User) => {
+        const {key} = e
+        if (key === "edit") {
+            modalRef.current?.open({mode: "edit", user: record, refresh})
+            modalRef.current?.setModalTitle("编辑用户")
+        } else if (key === "delete") {
+            deleteModal(record.id)
+        }
+    }
+
+    //  打开删除用户对话框
+    const deleteModal = (id: any) => {
+        if (!id) {
+            message.warning("删除时Id必填")
+            return
+        }
+
+        ConfirmModal.confirm(
+            ConfirmModalType.WARNING,
+            <div>删除1个用户?</div>,
+            <div>
+                <p>以下用户将被永久删除，对管理系统的访问权限将被移除：</p>
+                <p>您无法恢复删除的用户。</p>
+            </div>,
+            "删除用户",
+            async (close: any) => {
+                await del(id)
+                //  刷新表格数据
+                refresh()
+                //  关闭对话框
+                close()
+            }
+        )
+    }
 
     //  请求用户列表
     const request = async (params: {current?: number; pageSize?: number; keyword?: string}) => {
@@ -80,9 +153,9 @@ const UserList: FC = () => {
         }
     }
 
-    //  处理表单提交之后事件
-    const afterSubmit = (values: any, form: FormInstance<any>) => {
-
+    //  刷新表格数据
+    const refresh = () => {
+        actionRef.current?.reload()
     }
 
     return (
@@ -95,7 +168,7 @@ const UserList: FC = () => {
                         type="ghost"
                         icon={<PlusCircleOutlined/>}
                         onClick={() => {
-                            modalRef.current?.open({mode: "create"})
+                            modalRef.current?.open({mode: "create", refresh})
                             modalRef.current?.setModalTitle("创建用户")
                         }}
                     >
@@ -105,6 +178,7 @@ const UserList: FC = () => {
             />
 
             <ProTable<User>
+                actionRef={actionRef}
                 request={request}
                 columns={columns}
                 search={false}
@@ -138,7 +212,7 @@ const UserList: FC = () => {
                 }}
             />
 
-            <UserModal afterSubmit={afterSubmit}/>
+            <UserModal/>
         </div>
     )
 }

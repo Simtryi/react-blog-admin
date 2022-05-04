@@ -1,0 +1,91 @@
+.confirm-modal {
+  padding-bottom: 0;
+  border-radius: 6px;
+
+  .ant-modal-content {
+    border-radius: 6px;
+    box-shadow: 0 2.7px 9px rgb(0 0 0 / 13%), 0 9.4px 24px rgb(0 0 0 / 9%), 0 21.8px 43px rgb(0 0 0 / 8%);
+
+    .ant-modal-close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 56px;
+      height: 56px;
+
+      .ant-modal-close-x {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 24px;
+        height: 24px;
+        border-radius: 4px;
+        transition: 0.5s;
+
+        .anticon {
+          width: 16px;
+          height: 16px;
+          color: #343741;
+        }
+
+        &:hover {
+          background-color: rgba(105, 112, 125, 0.1);
+        }
+      }
+    }
+
+    .ant-modal-body {
+      .ant-modal-confirm-body {
+        .ant-modal-confirm-title {
+          font-size: 27px;
+          font-weight: 700;
+          color: #1a1c21;
+        }
+
+        .ant-modal-confirm-content {
+          font-size: 14px;
+          font-weight: 400;
+          color: #343741;
+
+          div {
+            white-space: nowrap;
+          }
+        }
+      }
+
+      .ant-modal-confirm-btns {
+        margin-top: 16px;
+
+        .ant-btn-link {
+          font-weight: 500;
+          color: #0071c2;
+        }
+
+        .ant-btn-primary {
+          min-width: 90px;
+          height: 40px;
+          border-radius: 6px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+.confirm-modal-info {
+  .ant-modal-confirm-btns {
+    .ant-btn-primary {
+      border-color: #0068b3;
+      background-color: #0068b3;
+    }
+  }
+}
+
+.confirm-modal-warning {
+  .ant-modal-confirm-btns {
+    .ant-btn-primary {
+      border-color: #bd271e;
+      background-color: #bd271e;
+    }
+  }
+}

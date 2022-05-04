@@ -46,17 +46,20 @@ const AvatarDropdown: FC = () => {
     //  注销
     const handleLogout = async () => {
         //  注销
-        await logout()
+        const response = await logout()
 
-        //  初始化应用
-        dispatch(initApp())
-        //  初始化用户
-        dispatch(initUser())
+        //  注销成功
+        if (response.code === "OK") {
+            //  初始化应用
+            dispatch(initApp())
+            //  初始化用户
+            dispatch(initUser())
 
-        //  提示消息
-        message.success("注销成功")
-        //  跳转页面
-        navigate("/login")
+            //  提示消息
+            message.success("注销成功")
+            //  跳转页面
+            navigate("/login")
+        }
     }
 
     return (

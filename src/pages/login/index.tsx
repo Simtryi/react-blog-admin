@@ -30,14 +30,17 @@ const Login: FC = () => {
         //  登录
         const response = await login(user.username, user.password)
 
-        //  设置 token
-        const token = response.data.authenticationSchema + response.data.token
-        dispatch(setToken(token))
+        //  登录成功
+        if (response.code === "OK") {
+            //  设置 token
+            const token = response.data.authenticationSchema + response.data.token
+            dispatch(setToken(token))
 
-        //  提示消息
-        message.success("登录成功")
-        //  跳转页面
-        navigate("/")
+            //  提示消息
+            message.success("登录成功")
+            //  跳转页面
+            navigate("/")
+        }
     }
 
     //  标题动画样式

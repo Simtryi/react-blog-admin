@@ -7,7 +7,7 @@ import "./index.less";
 type HeaderDropdownProps = {
     overlayClassName?: string   //  下拉根元素的类名称
     overlay: React.ReactNode | (() => React.ReactNode) | any    //  菜单
-    placement?: "bottomLeft" | "bottomRight" | "topLeft" | "topCenter" | "topRight" | "bottomCenter"    //  菜单弹出位置
+    placement?: "bottomLeft" | "bottomCenter" | "bottomRight" | "topLeft" | "topCenter" | "topRight"    //  菜单弹出位置
 } & Omit<DropDownProps, "overlay">
 
 /**

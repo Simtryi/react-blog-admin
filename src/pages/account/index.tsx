@@ -22,13 +22,16 @@ const Account: FC = () => {
         }
 
         //  更改密码
-        await updatePassword(user.username, values.oldPassword, values.newPassword)
+        const response = await updatePassword(user.username, values.oldPassword, values.newPassword)
 
-        //  设置新密码
-        dispatch(setPassword(values.newPassword))
+        //  更改密码成功
+        if (response.code === "OK") {
+            //  设置新密码
+            dispatch(setPassword(values.newPassword))
 
-        //  提示消息
-        message.success("密码更改成功")
+            //  提示消息
+            message.success("密码更改成功")
+        }
     }
 
     return (

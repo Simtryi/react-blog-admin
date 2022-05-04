@@ -1,6 +1,7 @@
 import {FormInstance, Modal, ModalProps} from "antd";
 import React, {forwardRef, PropsWithoutRef, useCallback, useImperativeHandle, useRef, useState} from "react";
 import "./index.less";
+import Icons, {IconType} from "../../components/Icons";
 
 /**
  * 对话框引用类型
@@ -62,9 +63,11 @@ const useFormModal = function <T>(modalProps: Partial<ModalProps>, Slot: React.C
 
         return (
             <Modal
+                className="form-modal"
                 visible={visible}
                 confirmLoading={loading}
                 title={title}
+                closeIcon={<Icons type={IconType.CLOSE}/>}
                 cancelButtonProps={{type: "link"}}
                 onOk={onOk}
                 onCancel={onCancel}

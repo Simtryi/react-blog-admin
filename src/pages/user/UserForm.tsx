@@ -1,13 +1,14 @@
-import React from "react";
-import {Form, FormInstance, Input, message} from "antd";
+import React, {useEffect} from "react";
+import {Form, FormInstance, Input, message, Select, Switch} from "antd";
 import User from "../../models/User";
 import {create, edit} from "../../services/user";
 
 interface IProps {
     user?: User //  用户
-    mode?: string    //  表单模式, create: 创建，edit: 编辑
-    beforeSubmit?: (values: any) => void
-    afterSubmit?: (values: any, form: FormInstance<any>) => void
+    mode?: string   //  表单模式, create: 创建，edit: 编辑
+    refresh?: () => void    //  刷新表格数据回调函数
+    beforeSubmit?: (values: any) => void    //  表单提交前回调函数
+    afterSubmit?: (values: any, form: FormInstance<any>) => void    //  表单提交后回调函数
 }
 
 /**
@@ -16,16 +17,21 @@ interface IProps {
 const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedRef<FormInstance>) => {
     const [form] = Form.useForm()
 
+    useEffect(() => {
+        form.resetFields(["username", "password", "nickname", "email", "status"])
+    })
+
     //  处理表单提交
     const handleFinish = (values: any) => {
-        const {username, password, nickname, email} = values
-        const user: User = {username, password, nickname, email}
+        const {username, password, nickname, email, status} = values
+        const user: User = {username, password, nickname, email, status}
 
         props.beforeSubmit?.(values)
 
         if (props.mode === "create") {
             createUser(user)
         } else {
+            user.id = props.user?.id
             editUser(user)
         }
 
@@ -34,20 +40,27 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
 
     //  创建用户
     const createUser = async (user: User) => {
-        await create(user)
-        message.success("创建成功")
+        const response = await create(user)
+        if (response.code === "OK") {
+            props.refresh?.()
+            message.success("创建成功")
+        }
     }
 
     //  编辑用户
     const editUser = async (user: User) => {
-        await edit(user)
-        message.success("编辑成功")
+        const response = await edit(user)
+        if (response.code === "OK") {
+            props.refresh?.()
+            message.success("编辑成功")
+        }
     }
 
     return (
         <Form
             ref={ref}
             form={form}
+            initialValues={props.user}
             layout="vertical"
             requiredMark={false}
             onFinish={handleFinish}
@@ -78,6 +91,15 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
                 rules={[{type: "email", message: "输入不合法"}]}
             >
                 <Input />
+            </Form.Item>
+            <Form.Item
+                label="用户状态"
+                name="status"
+            >
+                <Select allowClear>
+                    <Select.Option value="OK">正常</Select.Option>
+                    <Select.Option value="DISABLED">禁用</Select.Option>
+                </Select>
             </Form.Item>
         </Form>
     )
