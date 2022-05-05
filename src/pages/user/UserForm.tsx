@@ -73,27 +73,27 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
                 <Input />
             </Form.Item>
             <Form.Item
-                label="用户密码"
+                label="密码"
                 name="password"
                 rules={[{required: true, message: "请输入用户密码"}]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="用户昵称"
+                label="昵称"
                 name="nickname"
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="用户邮箱"
+                label="邮箱"
                 name="email"
                 rules={[{type: "email", message: "输入不合法"}]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="用户状态"
+                label="状态"
                 name="status"
             >
                 <Select allowClear>

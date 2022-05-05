@@ -8,6 +8,10 @@ const menus: ItemType[] = [{
     label: "用户管理",
     key: "user",
     icon: <Icons type={IconType.USER_OUTLINED}/>
+}, {
+    label: "角色管理",
+    key: "role",
+    icon: <Icons type={IconType.ROLE}/>
 }]
 
 export default menus
