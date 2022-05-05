@@ -46,6 +46,18 @@ const routes: RouteItem[] = [{
         element: React.lazy(() => import("../pages/role")),
         meta: {name: "角色管理"}
     }, {
+        path: "permission",
+        meta: {name: "权限管理"},
+        element: React.lazy(() => import("../pages/permission")),
+        children: [{
+            index: true,
+            element: React.lazy(() => import("../pages/permission/resource"))
+        }, {
+            path: "resource",
+            element: React.lazy(() => import("../pages/permission/resource")),
+            meta: {name: "资源列表"}
+        }]
+    }, {
         path: "401",
         element: React.lazy(() => import("../pages/results/Unauthorized")),
         meta: {name: "未授权"}

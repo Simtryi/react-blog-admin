@@ -2,11 +2,16 @@
   background-color: #fafbfd;
 
   .ant-menu-item[style="padding-left: 24px;"] {
-    padding-left: 24px !important;
+    height: 49px;
+    padding: 4px 0 4px 24px !important;
     margin-top: 0;
     margin-bottom: 0 !important;
     border-top: 1px solid #d3dae6;
     background-color: #fafbfd;
+  }
+
+  .ant-menu-item-selected {
+    background-color: #fafbfd !important;
   }
 
   .ant-menu-submenu {
@@ -31,8 +36,20 @@
 
           &:hover {
             text-decoration: underline;
-            background-color: rgba(211,218,230,.25);
+            background-color: rgba(211, 218, 230, 0.25);
           }
+        }
+      }
+
+      .ant-menu-item-selected {
+        background-color: #fafbfd;
+
+        .ant-menu-title-content {
+          background-color: rgba(211, 218, 230, 0.25);
+        }
+
+        &:after {
+          border-right: none;
         }
       }
     }

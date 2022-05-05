@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Form, FormInstance, Input, message, Select, Switch} from "antd";
+import {Form, FormInstance, Input, message, Select} from "antd";
 import User from "../../models/User";
 import {create, edit} from "../../services/user";
 

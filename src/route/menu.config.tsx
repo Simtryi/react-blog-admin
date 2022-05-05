@@ -12,6 +12,14 @@ const menus: ItemType[] = [{
     label: "角色管理",
     key: "role",
     icon: <Icons type={IconType.ROLE}/>
+}, {
+    label: "权限管理",
+    key: "permission",
+    icon: <Icons type={IconType.PERMISSION}/>,
+    children: [{
+        label: "资源列表",
+        key: "resource"
+    }]
 }]
 
 export default menus

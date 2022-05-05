@@ -8,6 +8,8 @@ export enum IconType {
     USER = "blog-user",                     //  用户图标
     USER_OUTLINED = "blog-user-outlined",   //  用户图标-线框风格
     ROLE = "blog-role",                     //  角色图标
+    PERMISSION = "blog-permission",         //  权限图标
+    SECURITY = "blog-security",             //  安全图标
     ACCOUNT = "blog-account",               //  账户图标
     PASSWORD = "blog-password",             //  密码图标
     MENU = "blog-menu",                     //  菜单图标
@@ -25,7 +27,7 @@ interface IProps {
  */
 const Icons: FC<IProps> = (props: IProps) => {
     const IconFont = createFromIconfontCN({
-        scriptUrl: "//at.alicdn.com/t/font_3346939_ls2b09lt8u.js"
+        scriptUrl: "//at.alicdn.com/t/font_3346939_67zskpg5z7s.js"
     })
 
     return <IconFont type={props.type}/>

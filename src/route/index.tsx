@@ -24,7 +24,7 @@ export function getRouteData(target: RouteObject[], source: RouteItem[], parentP
         let route: RouteObject = {
             path: item.path,
             index: item.index,
-            element: <item.element/>
+            element: item.element ? <item.element/> : null
         }
         target.push(route)
 
