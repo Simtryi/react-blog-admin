@@ -27,7 +27,7 @@ interface IProps {
  */
 const Icons: FC<IProps> = (props: IProps) => {
     const IconFont = createFromIconfontCN({
-        scriptUrl: "//at.alicdn.com/t/font_3346939_67zskpg5z7s.js"
+        scriptUrl: "//at.alicdn.com/t/font_3346939_bfbwbhw8yfh.js"
     })
 
     return <IconFont type={props.type}/>

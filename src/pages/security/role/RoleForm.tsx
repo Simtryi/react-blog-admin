@@ -1,10 +1,10 @@
 import React, {useEffect} from "react";
 import {Form, FormInstance, Input, message, Select} from "antd";
-import User from "../../models/User";
-import {create, edit} from "../../services/user";
+import {create, edit} from "../../../services/role";
+import Role from "../../../models/Role";
 
 interface IProps {
-    user?: User //  用户
+    role?: Role //  角色
     mode?: string   //  表单模式, create: 创建，edit: 编辑
     refresh?: () => void    //  刷新表格数据回调函数
     beforeSubmit?: (values: any) => void    //  表单提交前回调函数
@@ -12,44 +12,44 @@ interface IProps {
 }
 
 /**
- * 用户表单
+ * 角色表单
  */
-const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedRef<FormInstance>) => {
+const RoleForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedRef<FormInstance>) => {
     const [form] = Form.useForm()
 
     useEffect(() => {
-        form.resetFields(["username", "password", "nickname", "email", "status"])
+        form.resetFields(["name", "description", "status"])
     })
 
     //  处理表单提交
-    const handleFinish = (values: any) => {
-        const {username, password, nickname, email, status} = values
-        const user: User = {username, password, nickname, email, status}
+    const onFinish = (values: any) => {
+        const {name, description, status} = values
+        const role: Role = {name, description, status}
 
         props.beforeSubmit?.(values)
 
         if (props.mode === "create") {
-            createUser(user)
+            createRole(role)
         } else {
-            user.id = props.user?.id
-            editUser(user)
+            role.id = props.role?.id
+            editRole(role)
         }
 
         props.afterSubmit?.(values, form)
     }
 
-    //  创建用户
-    const createUser = async (user: User) => {
-        const response = await create(user)
+    //  创建角色
+    const createRole = async (role: Role) => {
+        const response = await create(role)
         if (response.code === "OK") {
             props.refresh?.()
             message.success("创建成功")
         }
     }
 
-    //  编辑用户
-    const editUser = async (user: User) => {
-        const response = await edit(user)
+    //  编辑角色
+    const editRole = async (role: Role) => {
+        const response = await edit(role)
         if (response.code === "OK") {
             props.refresh?.()
             message.success("编辑成功")
@@ -60,37 +60,23 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
         <Form
             ref={ref}
             form={form}
-            initialValues={props.user}
+            initialValues={props.role}
             layout="vertical"
             requiredMark={false}
-            onFinish={handleFinish}
+            onFinish={onFinish}
         >
             <Form.Item
-                label="用户名"
-                name="username"
-                rules={[{required: true, message: "请输入用户名"}]}
+                label="名称"
+                name="name"
+                rules={[{required: true, message: "请输入角色名称"}]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
-                label="密码"
-                name="password"
-                rules={[{required: true, message: "请输入用户密码"}]}
+                label="描述"
+                name="description"
             >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="昵称"
-                name="nickname"
-            >
-                <Input />
-            </Form.Item>
-            <Form.Item
-                label="邮箱"
-                name="email"
-                rules={[{type: "email", message: "输入不合法"}]}
-            >
-                <Input />
+                <Input.TextArea rows={3} allowClear/>
             </Form.Item>
             <Form.Item
                 label="状态"
@@ -105,4 +91,4 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
     )
 }
 
-export default UserForm
+export default RoleForm

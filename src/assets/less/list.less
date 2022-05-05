@@ -8,11 +8,19 @@
     padding: 0 0 24px 0;
     border-bottom: 1px solid #d3dae6;
 
-    .ant-page-header-heading-title {
-      font-size: 34px;
-      font-weight: 700;
-      font-family: Helvetica, Arial, sans-serif;
-      color: #1a1c21;
+    .ant-page-header-heading-left {
+      align-items: flex-end;
+
+      .ant-page-header-heading-title {
+        font-size: 34px;
+        font-weight: 700;
+        font-family: Helvetica, Arial, sans-serif;
+        color: #1a1c21;
+      }
+
+      .ant-page-header-heading-sub-title {
+        font-size: 16px;
+      }
     }
 
     .ant-page-header-heading-extra {
@@ -24,6 +32,13 @@
         font-weight: 500;
         background-color: #0068b3;
         color: #fff;
+
+        .anticon {
+          svg {
+            width: 16px;
+            height: 16px;
+          }
+        }
       }
     }
   }

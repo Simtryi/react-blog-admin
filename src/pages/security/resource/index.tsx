@@ -1,28 +1,27 @@
 import React, {FC, useRef} from "react";
 import type {ActionType, ProColumns} from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {Button, Menu, message, PageHeader, Space, Tag} from "antd";
-import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleOutlined} from "@ant-design/icons";
-import {del, list} from "../../services/role";
-import useFormModal from "../../hooks/useFormModal/useFormModal";
-import ConfirmModal, {ConfirmModalType} from "../../components/ConfirmModal";
+import {Button, Menu, message, PageHeader, Space} from "antd";
+import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleFilled} from "@ant-design/icons";
 import {ItemType} from "antd/es/menu/hooks/useItems";
-import HeaderDropdown from "../../layouts/LayoutHeader/HeaderDropdown";
 import {MenuInfo} from "rc-menu/lib/interface";
-import Role from "../../models/Role";
-import RoleStatus from "../../models/enums/RoleStatus";
-import RoleForm from "./RoleForm";
-import "../../assets/less/list.less";
+import Resource from "../../../models/Resource";
+import ResourceForm from "./ResourceForm";
+import useFormModal from "../../../hooks/useFormModal/useFormModal";
+import HeaderDropdown from "../../../layouts/LayoutHeader/HeaderDropdown";
+import ConfirmModal, {ConfirmModalType} from "../../../components/ConfirmModal";
+import {del, list} from "../../../services/resource";
+import "../../../assets/less/list.less";
 
 /**
- * 角色列表页面
+ * 资源列表页面
  */
 const RoleList: FC = () => {
     const actionRef = useRef<ActionType>()
-    const {modalRef, FormModal: RoleModal} = useFormModal({}, React.forwardRef(RoleForm))
+    const {modalRef, FormModal: ResourceModal} = useFormModal({}, React.forwardRef(ResourceForm))
 
     //  列定义
-    const columns: ProColumns<Role>[] = [
+    const columns: ProColumns<Resource>[] = [
         {
             title: '名称',
             dataIndex: 'name',
@@ -32,17 +31,15 @@ const RoleList: FC = () => {
             }
         },
         {
-            title: '描述',
-            dataIndex: 'description'
+            title: "URL",
+            dataIndex: "url",
+            sorter: {
+                compare: (a, b) => a.url.length - b.url.length
+            }
         },
         {
-            title: '状态',
-            dataIndex: 'status',
-            render: (_, record) => (
-                record.status === RoleStatus.OK ?
-                    <Tag color="#108ee9" key={record.id}>正常</Tag> :
-                    <Tag color="#f50" key={record.id}>禁用</Tag>
-            ),
+            title: '描述',
+            dataIndex: 'description'
         },
         {
             title: '操作',
@@ -57,8 +54,8 @@ const RoleList: FC = () => {
                     className="btn-edit"
                     icon={<EditOutlined/>}
                     onClick={() => {
-                        modalRef.current?.open({mode: "edit", role: record, refresh})
-                        modalRef.current?.setModalTitle("编辑角色")
+                        modalRef.current?.open({mode: "edit", resource: record, refresh})
+                        modalRef.current?.setModalTitle("编辑资源")
                     }}
                 />,
                 <Button
@@ -96,17 +93,17 @@ const RoleList: FC = () => {
     }]
 
     //  处理菜单点击事件
-    const handleMenuClick = (e: MenuInfo, record: Role) => {
+    const handleMenuClick = (e: MenuInfo, record: Resource) => {
         const {key} = e
         if (key === "edit") {
-            modalRef.current?.open({mode: "edit", role: record, refresh})
-            modalRef.current?.setModalTitle("编辑角色")
+            modalRef.current?.open({mode: "edit", resource: record, refresh})
+            modalRef.current?.setModalTitle("编辑资源")
         } else if (key === "delete") {
             deleteModal(record.id)
         }
     }
 
-    //  打开删除角色对话框
+    //  打开删除资源对话框
     const deleteModal = (id: any) => {
         if (!id) {
             message.warning("删除时Id必填")
@@ -115,12 +112,12 @@ const RoleList: FC = () => {
 
         ConfirmModal.confirm(
             ConfirmModalType.WARNING,
-            <div>删除角色</div>,
+            <div>删除资源</div>,
             <div>
-                <p>是否确定删除此角色？</p>
+                <p>是否确定删除此资源？</p>
                 <p>此操作无法撤消！</p>
             </div>,
-            "删除角色",
+            "删除资源",
             async (close: any) => {
                 await del(id)
                 //  刷新表格数据
@@ -131,7 +128,7 @@ const RoleList: FC = () => {
         )
     }
 
-    //  请求角色列表
+    //  请求资源列表
     const request = async (params: {current?: number; pageSize?: number; keyword?: string}) => {
         const response = await list(params.current, params.pageSize, params.keyword)
         return {
@@ -149,23 +146,24 @@ const RoleList: FC = () => {
     return (
         <div className="list-page">
             <PageHeader
-                title="角色"
+                title="资源"
+                subTitle="定义需要被保护的接口列表。"
                 extra={[
                     <Button
                         key={1}
                         type="ghost"
-                        icon={<PlusCircleOutlined/>}
+                        icon={<PlusCircleFilled/>}
                         onClick={() => {
                             modalRef.current?.open({mode: "create", refresh})
-                            modalRef.current?.setModalTitle("创建角色")
+                            modalRef.current?.setModalTitle("创建资源")
                         }}
                     >
-                        创建角色
+                        创建资源
                     </Button>
                 ]}
             />
 
-            <ProTable<Role>
+            <ProTable<Resource>
                 actionRef={actionRef}
                 request={request}
                 columns={columns}
@@ -200,7 +198,7 @@ const RoleList: FC = () => {
                 }}
             />
 
-            <RoleModal/>
+            <ResourceModal/>
         </div>
     )
 }

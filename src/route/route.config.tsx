@@ -38,24 +38,24 @@ const routes: RouteItem[] = [{
         element: React.lazy(() => import("../pages/account")),
         meta: {name: "账户设置"}
     }, {
-        path: "user",
-        element: React.lazy(() => import("../pages/user")),
-        meta: {name: "用户管理"}
-    }, {
-        path: "role",
-        element: React.lazy(() => import("../pages/role")),
-        meta: {name: "角色管理"}
-    }, {
-        path: "permission",
-        meta: {name: "权限管理"},
-        element: React.lazy(() => import("../pages/permission")),
+        path: "security",
+        element: React.lazy(() => import("../pages/security")),
+        meta: {name: "安全管理"},
         children: [{
             index: true,
-            element: React.lazy(() => import("../pages/permission/resource"))
+            element: React.lazy(() => import("../pages/security/user"))
+        }, {
+            path: "user",
+            element: React.lazy(() => import("../pages/security/user")),
+            meta: {name: "用户管理"}
+        }, {
+            path: "role",
+            element: React.lazy(() => import("../pages/security/role")),
+            meta: {name: "角色管理"}
         }, {
             path: "resource",
-            element: React.lazy(() => import("../pages/permission/resource")),
-            meta: {name: "资源列表"}
+            element: React.lazy(() => import("../pages/security/resource")),
+            meta: {name: "资源管理"}
         }]
     }, {
         path: "401",

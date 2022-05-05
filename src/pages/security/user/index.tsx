@@ -1,45 +1,60 @@
 import React, {FC, useRef} from "react";
 import type {ActionType, ProColumns} from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {Button, Menu, message, PageHeader, Space} from "antd";
-import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleOutlined} from "@ant-design/icons";
-import {ItemType} from "antd/es/menu/hooks/useItems";
-import {MenuInfo} from "rc-menu/lib/interface";
-import Resource from "../../../models/Resource";
-import ResourceForm from "./ResourceForm";
+import {Button, Menu, message, PageHeader, Space, Tag} from "antd";
+import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleFilled} from "@ant-design/icons";
+import User from "../../../models/User";
+import UserStatus from "../../../models/enums/UserStatus";
+import {del, list} from "../../../services/user";
 import useFormModal from "../../../hooks/useFormModal/useFormModal";
-import HeaderDropdown from "../../../layouts/LayoutHeader/HeaderDropdown";
+import UserForm from "./UserForm";
 import ConfirmModal, {ConfirmModalType} from "../../../components/ConfirmModal";
-import {del, list} from "../../../services/resource";
+import {ItemType} from "antd/es/menu/hooks/useItems";
+import HeaderDropdown from "../../../layouts/LayoutHeader/HeaderDropdown";
+import {MenuInfo} from "rc-menu/lib/interface";
 import "../../../assets/less/list.less";
 
 /**
- * 资源列表页面
+ * 用户列表页面
  */
-const RoleList: FC = () => {
+const UserList: FC = () => {
     const actionRef = useRef<ActionType>()
-    const {modalRef, FormModal: ResourceModal} = useFormModal({}, React.forwardRef(ResourceForm))
+    const {modalRef, FormModal: UserModal} = useFormModal({}, React.forwardRef(UserForm))
 
     //  列定义
-    const columns: ProColumns<Resource>[] = [
+    const columns: ProColumns<User>[] = [
         {
-            title: '名称',
-            dataIndex: 'name',
+            title: '用户名',
+            dataIndex: 'username',
             sorter: {
-                compare: (a, b) => a.name.length - b.name.length,
+                compare: (a, b) => a.username.length - b.username.length,
                 multiple: 1,
             }
         },
         {
-            title: "URL",
-            dataIndex: "url",
+            title: '昵称',
+            dataIndex: 'nickname',
             sorter: {
-                compare: (a, b) => a.url.length - b.url.length
+                compare: (a, b) => a.nickname.length - b.nickname.length,
+                multiple: 2,
             }
         },
         {
-            title: '描述',
-            dataIndex: 'description'
+            title: '邮箱',
+            dataIndex: 'email',
+            sorter: {
+                compare: (a, b) => a.email.length - b.email.length,
+                multiple: 3,
+            }
+        },
+        {
+            title: '状态',
+            dataIndex: 'status',
+            render: (_, record) => (
+                record.status === UserStatus.OK ?
+                    <Tag color="#108ee9" key={record.id}>正常</Tag> :
+                    <Tag color="#f50" key={record.id}>禁用</Tag>
+            ),
         },
         {
             title: '操作',
@@ -54,8 +69,8 @@ const RoleList: FC = () => {
                     className="btn-edit"
                     icon={<EditOutlined/>}
                     onClick={() => {
-                        modalRef.current?.open({mode: "edit", resource: record, refresh})
-                        modalRef.current?.setModalTitle("编辑资源")
+                        modalRef.current?.open({mode: "edit", user: record, refresh})
+                        modalRef.current?.setModalTitle("编辑用户")
                     }}
                 />,
                 <Button
@@ -93,17 +108,17 @@ const RoleList: FC = () => {
     }]
 
     //  处理菜单点击事件
-    const handleMenuClick = (e: MenuInfo, record: Resource) => {
+    const handleMenuClick = (e: MenuInfo, record: User) => {
         const {key} = e
         if (key === "edit") {
-            modalRef.current?.open({mode: "edit", resource: record, refresh})
-            modalRef.current?.setModalTitle("编辑资源")
+            modalRef.current?.open({mode: "edit", user: record, refresh})
+            modalRef.current?.setModalTitle("编辑用户")
         } else if (key === "delete") {
             deleteModal(record.id)
         }
     }
 
-    //  打开删除资源对话框
+    //  打开删除用户对话框
     const deleteModal = (id: any) => {
         if (!id) {
             message.warning("删除时Id必填")
@@ -112,12 +127,12 @@ const RoleList: FC = () => {
 
         ConfirmModal.confirm(
             ConfirmModalType.WARNING,
-            <div>删除资源</div>,
+            <div>删除1个用户?</div>,
             <div>
-                <p>是否确定删除此资源？</p>
-                <p>此操作无法撤消！</p>
+                <p>以下用户将被永久删除，对管理系统的访问权限将被移除：</p>
+                <p>您无法恢复删除的用户。</p>
             </div>,
-            "删除资源",
+            "删除用户",
             async (close: any) => {
                 await del(id)
                 //  刷新表格数据
@@ -128,7 +143,7 @@ const RoleList: FC = () => {
         )
     }
 
-    //  请求资源列表
+    //  请求用户列表
     const request = async (params: {current?: number; pageSize?: number; keyword?: string}) => {
         const response = await list(params.current, params.pageSize, params.keyword)
         return {
@@ -146,23 +161,23 @@ const RoleList: FC = () => {
     return (
         <div className="list-page">
             <PageHeader
-                title="资源"
+                title="用户"
                 extra={[
                     <Button
                         key={1}
                         type="ghost"
-                        icon={<PlusCircleOutlined/>}
+                        icon={<PlusCircleFilled/>}
                         onClick={() => {
                             modalRef.current?.open({mode: "create", refresh})
-                            modalRef.current?.setModalTitle("创建资源")
+                            modalRef.current?.setModalTitle("创建用户")
                         }}
                     >
-                        创建资源
+                        创建用户
                     </Button>
                 ]}
             />
 
-            <ProTable<Resource>
+            <ProTable<User>
                 actionRef={actionRef}
                 request={request}
                 columns={columns}
@@ -197,9 +212,9 @@ const RoleList: FC = () => {
                 }}
             />
 
-            <ResourceModal/>
+            <UserModal/>
         </div>
     )
 }
 
-export default RoleList
+export default UserList

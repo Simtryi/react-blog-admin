@@ -1,7 +1,10 @@
 import {FC} from "react";
 import {Outlet} from "react-router-dom";
 
-const Permission: FC = () => {
+/**
+ * 安全管理
+ */
+const Security: FC = () => {
     return (
         <div>
             <Outlet/>
@@ -9,4 +12,4 @@ const Permission: FC = () => {
     )
 }
 
-export default Permission
+export default Security

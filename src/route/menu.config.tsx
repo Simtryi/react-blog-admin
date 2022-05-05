@@ -5,19 +5,17 @@ import Icons, {IconType} from "../components/Icons";
  * 全局菜单
  */
 const menus: ItemType[] = [{
-    label: "用户管理",
-    key: "user",
-    icon: <Icons type={IconType.USER_OUTLINED}/>
-}, {
-    label: "角色管理",
-    key: "role",
-    icon: <Icons type={IconType.ROLE}/>
-}, {
-    label: "权限管理",
-    key: "permission",
-    icon: <Icons type={IconType.PERMISSION}/>,
+    label: "安全管理",
+    key: "security",
+    icon: <Icons type={IconType.SECURITY}/>,
     children: [{
-        label: "资源列表",
+        label: "用户管理",
+        key: "user"
+    }, {
+        label: "角色管理",
+        key: "role"
+    }, {
+        label: "资源管理",
         key: "resource"
     }]
 }]
