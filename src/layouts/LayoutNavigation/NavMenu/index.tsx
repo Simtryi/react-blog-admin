@@ -1,6 +1,6 @@
 import React, {FC} from "react";
 import {useAppDispatch, useAppSelector} from "../../../hooks/reduxHook";
-import {setOpenKeys, setSelectedKeys} from "../../../store/reducer/appSlice";
+import {setNavStatus, setOpenKeys, setSelectedKeys} from "../../../store/reducer/appSlice";
 import {useNavigate} from "react-router-dom";
 import {MenuInfo, SelectInfo} from "rc-menu/lib/interface";
 import {Menu} from "antd";
@@ -36,6 +36,10 @@ const NavMenu: FC = () => {
             path = path + "/" + keyPath[i]
         }
 
+        //  关闭导航栏
+        dispatch(setNavStatus(false))
+
+        //  跳转路径
         navigate(path)
     }
 

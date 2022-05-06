@@ -24,6 +24,8 @@ const LayoutNavigation: FC = () => {
         dispatch(setOpenKeys([]))
         //  设置初始选中的菜单项为空
         dispatch(setSelectedKeys([]))
+        //  关闭导航栏
+        dispatch(setNavStatus(false))
 
         //  跳转到主页
         navigate("/")

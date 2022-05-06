@@ -1,5 +1,6 @@
 import {ItemType} from "antd/es/menu/hooks/useItems";
 import Icons, {IconType} from "../components/Icons";
+import {TagsOutlined} from "@ant-design/icons";
 
 /**
  * 全局菜单
@@ -18,6 +19,10 @@ const menus: ItemType[] = [{
         label: "资源管理",
         key: "resource"
     }]
+}, {
+    label: "标签管理",
+    key: "tag",
+    icon: <TagsOutlined/>
 }]
 
 export default menus

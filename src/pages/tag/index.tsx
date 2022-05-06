@@ -1,60 +1,42 @@
 import React, {FC, useRef} from "react";
 import type {ActionType, ProColumns} from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
-import {Button, Menu, message, PageHeader, Space, Tag} from "antd";
-import {DeleteOutlined, EditOutlined, EllipsisOutlined, PlusCircleFilled} from "@ant-design/icons";
-import User from "../../../models/User";
-import UserStatus from "../../../models/enums/UserStatus";
-import {del, list} from "../../../services/user";
-import useFormModal from "../../../hooks/useFormModal/useFormModal";
-import UserForm from "./UserForm";
-import ConfirmModal, {ConfirmModalType} from "../../../components/ConfirmModal";
+import {Button, Menu, message, PageHeader, Space} from "antd";
+import {DeleteOutlined, EditOutlined, EllipsisOutlined, TagOutlined} from "@ant-design/icons";
 import {ItemType} from "antd/es/menu/hooks/useItems";
-import HeaderDropdown from "../../../layouts/LayoutHeader/HeaderDropdown";
 import {MenuInfo} from "rc-menu/lib/interface";
-import "../../../assets/less/list.less";
+import useFormModal from "../../hooks/useFormModal/useFormModal";
+import TagForm from "./TagForm";
+import Tag from "../../models/Tag";
+import HeaderDropdown from "../../layouts/LayoutHeader/HeaderDropdown";
+import ConfirmModal, {ConfirmModalType} from "../../components/ConfirmModal";
+import {del, list} from "../../services/tag";
+import "../../assets/less/list.less";
 
 /**
- * 用户列表页面
+ * 标签列表页面
  */
-const UserList: FC = () => {
+const TagList: FC = () => {
     const actionRef = useRef<ActionType>()
-    const {modalRef, FormModal: UserModal} = useFormModal({}, React.forwardRef(UserForm))
+    const {modalRef, FormModal: TagModal} = useFormModal({}, React.forwardRef(TagForm))
 
     //  列定义
-    const columns: ProColumns<User>[] = [
+    const columns: ProColumns<Tag>[] = [
         {
-            title: '用户名',
-            dataIndex: 'username',
+            title: '名称',
+            dataIndex: 'name',
             sorter: {
-                compare: (a, b) => a.username.length - b.username.length,
+                compare: (a, b) => a.name.length - b.name.length,
                 multiple: 1,
             }
         },
         {
-            title: '昵称',
-            dataIndex: 'nickname',
-            sorter: {
-                compare: (a, b) => a.nickname.length - b.nickname.length,
-                multiple: 2,
-            }
+            title: '颜色',
+            dataIndex: 'color',
         },
         {
-            title: '邮箱',
-            dataIndex: 'email',
-            sorter: {
-                compare: (a, b) => a.email.length - b.email.length,
-                multiple: 3,
-            }
-        },
-        {
-            title: '状态',
-            dataIndex: 'status',
-            render: (_, record) => (
-                record.status === UserStatus.OK ?
-                    <Tag color="#108ee9" key={record.id}>正常</Tag> :
-                    <Tag color="#f50" key={record.id}>禁用</Tag>
-            ),
+            title: '描述',
+            dataIndex: 'description',
         },
         {
             title: '操作',
@@ -69,8 +51,8 @@ const UserList: FC = () => {
                     className="btn-edit"
                     icon={<EditOutlined/>}
                     onClick={() => {
-                        modalRef.current?.open({mode: "edit", user: record, refresh})
-                        modalRef.current?.setModalTitle("编辑用户")
+                        modalRef.current?.open({mode: "edit", tag: record, refresh})
+                        modalRef.current?.setModalTitle("编辑标签")
                     }}
                 />,
                 <Button
@@ -108,17 +90,17 @@ const UserList: FC = () => {
     }]
 
     //  处理菜单点击事件
-    const handleMenuClick = (e: MenuInfo, record: User) => {
+    const handleMenuClick = (e: MenuInfo, record: Tag) => {
         const {key} = e
         if (key === "edit") {
-            modalRef.current?.open({mode: "edit", user: record, refresh})
-            modalRef.current?.setModalTitle("编辑用户")
+            modalRef.current?.open({mode: "edit", tag: record, refresh})
+            modalRef.current?.setModalTitle("编辑标签")
         } else if (key === "delete") {
             deleteModal(record.id)
         }
     }
 
-    //  打开删除用户对话框
+    //  打开删除标签对话框
     const deleteModal = (id: any) => {
         if (!id) {
             message.warning("删除时Id必填")
@@ -127,12 +109,12 @@ const UserList: FC = () => {
 
         ConfirmModal.confirm(
             ConfirmModalType.WARNING,
-            <div>删除用户</div>,
+            <div>删除标签</div>,
             <div>
-                <p>是否确定删除此用户？</p>
+                <p>是否确定删除此标签？</p>
                 <p>此操作无法撤消！</p>
             </div>,
-            "删除用户",
+            "删除标签",
             async (close: any) => {
                 await del(id)
                 //  刷新表格数据
@@ -143,7 +125,7 @@ const UserList: FC = () => {
         )
     }
 
-    //  请求用户列表
+    //  请求标签列表
     const request = async (params: {current?: number; pageSize?: number; keyword?: string}) => {
         const response = await list(params.current, params.pageSize, params.keyword)
         return {
@@ -161,23 +143,24 @@ const UserList: FC = () => {
     return (
         <div className="list-page">
             <PageHeader
-                title="用户"
+                title="标签"
+                subTitle="使用标签归类博客，从而轻松找到博客。"
                 extra={[
                     <Button
                         key={1}
                         type="ghost"
-                        icon={<PlusCircleFilled/>}
+                        icon={<TagOutlined/>}
                         onClick={() => {
                             modalRef.current?.open({mode: "create", refresh})
-                            modalRef.current?.setModalTitle("创建用户")
+                            modalRef.current?.setModalTitle("创建标签")
                         }}
                     >
-                        创建用户
+                        创建标签
                     </Button>
                 ]}
             />
 
-            <ProTable<User>
+            <ProTable<Tag>
                 actionRef={actionRef}
                 request={request}
                 columns={columns}
@@ -212,9 +195,9 @@ const UserList: FC = () => {
                 }}
             />
 
-            <UserModal/>
+            <TagModal/>
         </div>
     )
 }
 
-export default UserList
+export default TagList

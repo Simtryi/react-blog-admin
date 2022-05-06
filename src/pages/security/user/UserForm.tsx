@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Form, FormInstance, Input, message, Select} from "antd";
 import User from "../../../models/User";
 import {create, edit} from "../../../services/user";
+import Icons, {IconType} from "../../../components/Icons";
 
 interface IProps {
     user?: User //  用户
@@ -18,7 +19,7 @@ const UserForm = (props: React.PropsWithChildren<IProps>, ref?: React.ForwardedR
     const [form] = Form.useForm()
 
     useEffect(() => {
-        form.resetFields(["username", "password", "nickname", "email", "status"])
+        form.resetFields(["username", "nickname", "email", "status"])
     })
 
     //  处理表单提交
